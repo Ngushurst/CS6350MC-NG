@@ -122,19 +122,64 @@ namespace ID3_Algorithm_NG
             return null;
         }
 
-        public static List<Case> ParseCSV(Attribute[] Attributes, String filename)
+        public static List<Case> ParseCSV(Attribute[] Attributes, String Filepath)
         {
-
+            String[] rawCases = System.IO.File.ReadAllLines(Filepath);
+            throw new NotImplementedException("I mean, do we really have to right now?");
             return null;
         }
 
         /// <summary>
-        /// Parses a CSV and tries to automatically detect and build attributes
+        /// Parses a CSV and tries to automatically detect and build attributes. Returns a list of cases and populates the given list of attributes.
         /// </summary>
         /// <returns></returns>
-        public static List<Case> ParseCSV(String Filename)
+        public static List<Case> ParseCSV(String Filepath, out List<Attribute> attributes)
         {
-            return null;
+            //read all lines of the CSV file
+            String[] rawCases = System.IO.File.ReadAllLines(Filepath);
+
+            if(rawCases.Length == 0)
+            {
+                throw new MissingFieldException("File must have at least one data point");
+            }
+
+            String[] example = rawCases[0].Split(',');
+            attributes = new List<Attribute>(example.Length); //initialize attributes
+
+            for (int i = 0; i<example.Length; i++) //check the first item to find the number of attributes
+            { //create attributes and intialize their lists of variants. Populate attributes
+                if (i < example.Length - 1)
+                {
+                    attributes.Add(new Attribute("" + i, i, new List<String>(), false, false));
+                }
+                else
+                {//last attribute assumed by default to be final
+                    attributes.Add(new Attribute("" + i, i, new List<String>(), false, true));
+                }
+
+            }
+            List<Case> data = new List<Case>(rawCases.Length);
+            for (int i = 0; i < rawCases.Length; i++)
+            {
+                String[] current = rawCases[i].Split(',');
+                int[] caseVars = new int[current.Length]; //array to hold all the relevant values in the case
+
+
+                if (current.Length == 0)
+                { //blank data likely at the start or end
+                    continue;
+                }
+
+                for(int j = 0; j<current.Length; j++)
+                {
+                    attributes[j].addVariant(current[j]); //record attribute
+                    caseVars[j] = attributes[j].GetVarID(current[j]); //record the variant number by the attribute now that it's in
+                }
+
+                data.Add(new Case(i, caseVars)); //add the case to the list
+            }//repeat until we run out of data.
+
+            return data;
         }
 
 
@@ -217,7 +262,7 @@ namespace ID3_Algorithm_NG
 
             foreach (Case c in Data)
             {
-                output[c.AttributeVals[attributeNum]]++; //increment the corresponding attribute variant (summing number of hits for each)
+                output[c.AttributeVals[attributeNum]]+= c.Weight; //increment the corresponding attribute variant by the case's weight (summing number of hits for each)
             }
 
             for (int i = 0; i<numVars; i++) //divide each by count to get the relative proportion of the label as oppsed to the count.
@@ -313,7 +358,12 @@ namespace ID3_Algorithm_NG
         /// <summary>
         /// Build a new attribute with all input fields.
         /// </summary>
-        Attribute(String name, int id, List<String> variants, bool numericalrange, bool final)
+        /// <param name="name"></param>
+        /// <param name="id"></param>
+        /// <param name="variants"></param>
+        /// <param name="numericalrange"></param>
+        /// <param name="final"></param>
+        public Attribute(String name, int id, List<String> variants, bool numericalrange, bool final)
         {
             Name = name;
             ID = id;
@@ -348,6 +398,11 @@ namespace ID3_Algorithm_NG
         /// <returns>True if the variant was able to be addded, or false if the variant was already contained.</returns>
         public bool addVariant(String variant)
         {
+            if (this.Numerical_Range)
+            {
+                throw new NotImplementedException("You fool. You didn't implement that yet");
+            }
+
             if (!Variants.Contains(variant)) //new variant not contained
             {
                 Variants.Add(variant);
@@ -396,9 +451,10 @@ namespace ID3_Algorithm_NG
         //public readonly String[] AttributeOrder;
 
         /// <summary>
-        /// Creates a new Case identified by an input id to contain input attribute values 
+        /// Creates a new Case identified by an input id to contain input attribute values. The data is not self describing, and 
+        /// requires a similarly ordered list of attributes (ordered by ID) to make sense of it.
         /// </summary>
-        Case(int id, int[] attributevals, String[] order)
+        public Case(int id, int[] attributevals/*, String[] order*/)
         {
             ID = id;
             AttributeVals = attributevals;
