@@ -1,0 +1,72 @@
+Information Gain Cars, Max Depth of 1. Error = 0.54532967032967 
+ 
+safety 0	
+	label 1	FinalLabel == unacc
+	label 1	FinalLabel == acc
+	label 1	FinalLabel == good
+
+ ----------------------------------------------------------------- 
+Information Gain Cars, Max Depth of 2. Error = 0.54532967032967 
+ 
+safety 0	
+	label 1	FinalLabel == unacc
+	label 1	FinalLabel == acc
+	label 1	FinalLabel == good
+
+ ----------------------------------------------------------------- 
+Information Gain Cars, Max Depth of 3. Error = 0.54532967032967 
+ 
+safety 0	
+	label 1	FinalLabel == unacc
+	label 1	FinalLabel == acc
+	label 1	FinalLabel == good
+
+ ----------------------------------------------------------------- 
+Information Gain Cars, Max Depth of 4. Error = 0.54532967032967 
+ 
+safety 0	
+	label 1	FinalLabel == unacc
+	label 1	FinalLabel == acc
+	label 1	FinalLabel == good
+
+ ----------------------------------------------------------------- 
+Information Gain Cars, Max Depth of 5. Error = 0.54532967032967 
+ 
+safety 0	
+	label 1	FinalLabel == unacc
+	label 1	FinalLabel == acc
+	label 1	FinalLabel == good
+
+ ----------------------------------------------------------------- 
+Information Gain Cars, Max Depth of 6. Error = 0.54532967032967 
+ 
+safety 0	
+	label 1	FinalLabel == unacc
+	label 1	FinalLabel == acc
+	label 1	FinalLabel == good
+
+ ----------------------------------------------------------------- 
+Gini Index Cars, Max Depth of 1. Error = 0.54532967032967 
+ 
+
+ ----------------------------------------------------------------- 
+Gini Index Cars, Max Depth of 2. Error = 0.54532967032967 
+ 
+
+ ----------------------------------------------------------------- 
+Gini Index Cars, Max Depth of 3. Error = 0.54532967032967 
+ 
+
+ ----------------------------------------------------------------- 
+Gini Index Cars, Max Depth of 4. Error = 0.54532967032967 
+ 
+
+ ----------------------------------------------------------------- 
+Gini Index Cars, Max Depth of 5. Error = 0.54532967032967 
+ 
+
+ ----------------------------------------------------------------- 
+Gini Index Cars, Max Depth of 6. Error = 0.54532967032967 
+ 
+
+ ----------------------------------------------------------------- 

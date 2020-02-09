@@ -1,6 +1,6 @@
-C:\Users\ngush\Source\Repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Algorithm_NG\bin\Debug\ID3_Algorithm_NG.dll
 C:\Users\ngush\Source\Repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Algorithm_NG\bin\Debug\ID3_Algorithm_NG.pdb
 C:\Users\ngush\Source\Repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Algorithm_NG\obj\Debug\ID3_Algorithm_NG.csprojAssemblyReference.cache
 C:\Users\ngush\Source\Repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Algorithm_NG\obj\Debug\ID3_Algorithm_NG.csproj.CoreCompileInputs.cache
-C:\Users\ngush\Source\Repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Algorithm_NG\obj\Debug\ID3_Algorithm_NG.dll
 C:\Users\ngush\Source\Repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Algorithm_NG\obj\Debug\ID3_Algorithm_NG.pdb
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Algorithm_NG\bin\Debug\ID3_Algorithm_NG.exe
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Algorithm_NG\obj\Debug\ID3_Algorithm_NG.exe

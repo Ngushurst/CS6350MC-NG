@@ -17,7 +17,7 @@ namespace ID3_Algorithm_NG
         /// </summary>
         public static ID3_Node ID3(List<Attribute> attributes, List<Case> data, int DepthRemaining, EntropyCalucalation calc)
         {
-            if (DepthRemaining > -1 && attributes.Count > 1) // Check more layers are allowed and if there are usable attributes remaining.
+            if (DepthRemaining > -1 && attributes.Count > 1 && data.Count > 0) // Check more layers are allowed and if there are usable attributes remaining, and that there's at least one data point
             {
                 //The next line assumes that the last attribute is always the final one, and the only final one.
                 //Attributes that are final are marked, so you should be able to change that behavior very easily.
@@ -34,7 +34,7 @@ namespace ID3_Algorithm_NG
                             break;
                         }
                     }
-                    return ID3_Node.Leaf(attributes.Count - 1, result); //Entire data set is of the same label. Tree is a single leaf node. Return a leaf node.
+                    return ID3_Node.Leaf(attributes.Last().ID, result); //Entire data set is of the same label. Tree is a single leaf node. Return a leaf node.
                 }
                 else
                 { //find the attribute that results in the lowest entropy and divide on that.
@@ -43,7 +43,7 @@ namespace ID3_Algorithm_NG
                     int BestAttNum = 0; //default
                     int BestAttID = -1;
 
-                    for (int a = 0; a < attributes.Count; a++)
+                    for (int a = 0; a < attributes.Count-1; a++) //check all attributes, but the last (that's the label, and we don't want to judge by that.)
                     {
                         int numVars = attributes[a].numVariants();
                         int aID = attributes[a].ID; //refers to the position in a case's data to find the desired attribute value.
@@ -67,8 +67,11 @@ namespace ID3_Algorithm_NG
                         {
                             //We're doing the same entropy calculation as the one at the top. We need to know the distribution of outputs.
                             double weight = (double)(set.Count) / (double) data.Count; //percentage of data represented by 'set'
-                            double[] distribution = GetLabelDistribution(set, attributes.Last(), attributes.Count - 1);
-                            sumEntropy += weight * CalculateEntropy(distribution, calc); //weighted entropy value
+                            if (set.Count > 0)
+                            {
+                                double[] distribution = GetLabelDistribution(set, attributes.Last(), attributes.Count - 1);
+                                sumEntropy += weight * CalculateEntropy(distribution, calc); //weighted entropy value
+                            }
                         }
 
                         if (sumEntropy < LowestEntropy) //Lowest entropy so far
@@ -90,15 +93,36 @@ namespace ID3_Algorithm_NG
                     {
                         //Notice how we're copying the list before we pass it in. Things get weird if you don't do that.
                         ID3_Node child = ID3(UpdatedAttributes.ToList(), LowestEntropySets[i], DepthRemaining - 1, calc);
-                        if (!ReferenceEquals(child, null)) //if the child is not null, add it to the list
-                        {
+                        //if (!ReferenceEquals(child, null)) //if the child is not null, add it to the list
+                        //{// if we let the children be null, then it maintains order in the child array.
                             Children.Add(child);
+                        //}
+                    }
+
+                    //point null children to real children. In effect, the tree guesses where to go in the event that values not present in the training data show up.
+                    List<int> nullChildren = new List<int>();
+                    int nonNullChild = 0;
+
+                    for (int i = 0; i<Children.Count; i++)
+                    {
+                        if(Children[i] == null)
+                        {
+                            nullChildren.Add(i);
                         }
+                        else
+                        {
+                            nonNullChild = i;
+                        }
+                    }
+                    
+                    foreach(int i in nullChildren)
+                    {
+                        Children[i] = Children[nonNullChild];
                     }
 
                     ID3_Node output = new ID3_Node(BestAttID);
 
-                    if (Children.Count == 0) //this node is required to be a leaf by the depth limit
+                    if (nullChildren.Count == Children.Count) //All children are null
                     {
                         double[] proportion = GetLabelDistribution(data, attributes.Last(), data[0].AttributeVals.Length-1);
                         double max = 0;
@@ -110,7 +134,7 @@ namespace ID3_Algorithm_NG
                                 mode = i;
                             }
                         }
-                        return ID3_Node.Leaf(attributes.Count-1, mode);
+                        return ID3_Node.Leaf(attributes.Last().ID, mode);
                     }
 
 
@@ -151,7 +175,7 @@ namespace ID3_Algorithm_NG
                 for (int j = 0; j < current.Length; j++)
                 {
                     int varID = Attributes[j].GetVarID(current[j]);
-                    if(varID != -1) //unrecognized attribute value. Assumed to be unknown and will be replaced by a fractional count
+                    if(varID == -1) //unrecognized attribute value. Assumed to be unknown and will be replaced by a fractional count
                     {
                         unidentifiedID.Add(i); //toss a reference to it onto this stack. Will add multiple copies of the same number for multiple missing values
                     }
@@ -260,11 +284,11 @@ namespace ID3_Algorithm_NG
             { //create attributes and intialize their lists of variants. Populate attributes
                 if (i < example.Length - 1)
                 {
-                    attributes.Add(new Attribute("" + i, i, new List<String>(), false, false));
+                    attributes.Add(new Attribute("Var" + i, i, new List<String>(), false, false));
                 }
                 else
                 {//last attribute assumed by default to be final
-                    attributes.Add(new Attribute("" + i, i, new List<String>(), false, true));
+                    attributes.Add(new Attribute("Var" + i, i, new List<String>(), false, true));
                 }
 
             }
@@ -310,7 +334,7 @@ namespace ID3_Algorithm_NG
                 }
             }
 
-           return RightAnswers/(double) TestCases.Count;
+           return 1.0 - (RightAnswers/(double) TestCases.Count);
         }
 
 
@@ -322,6 +346,12 @@ namespace ID3_Algorithm_NG
         {
             if (ReferenceEquals(Tree.getChildren(), null))
                 return Tree.Value;
+            /*
+            if(Tree.getChildren()[test.AttributeVals[Tree.AttributeID]] == null) //if the child is null pick another value that is valid. (example not present in training data)
+            {
+                if(Tree.getChildren().Length == test.AttributeVals[Tree.AttributeID])
+            }*/
+            
             return TestWithTree(test, Tree.getChildren()[test.AttributeVals[Tree.AttributeID]]);
         }
 
@@ -395,7 +425,7 @@ namespace ID3_Algorithm_NG
             foreach (Case c in Data)
             {
                 int AVal = c.AttributeVals[attributeNum]; // the varID of the attribute value held by C
-                if (AVal == -1)
+                if (AVal <= -1)
                 {
                     continue; //value is undefined. proceed to the next value
                 }
