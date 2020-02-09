@@ -1,0 +1,17 @@
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Testing\bin\Debug\netcoreapp2.2\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Testing\bin\Debug\netcoreapp2.2\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Testing\bin\Debug\netcoreapp2.2\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Testing\bin\Debug\netcoreapp2.2\ID3_Testing.deps.json
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Testing\bin\Debug\netcoreapp2.2\ID3_Testing.runtimeconfig.json
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Testing\bin\Debug\netcoreapp2.2\ID3_Testing.runtimeconfig.dev.json
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Testing\bin\Debug\netcoreapp2.2\ID3_Testing.dll
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Testing\bin\Debug\netcoreapp2.2\ID3_Testing.pdb
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Testing\bin\Debug\netcoreapp2.2\ID3_Algorithm_NG.dll
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Testing\bin\Debug\netcoreapp2.2\ID3_Algorithm_NG.pdb
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Testing\obj\Debug\netcoreapp2.2\ID3_Testing.csprojAssemblyReference.cache
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Testing\obj\Debug\netcoreapp2.2\ID3_Testing.csproj.CoreCompileInputs.cache
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Testing\obj\Debug\netcoreapp2.2\ID3_Testing.AssemblyInfoInputs.cache
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Testing\obj\Debug\netcoreapp2.2\ID3_Testing.AssemblyInfo.cs
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Testing\obj\Debug\netcoreapp2.2\ID3_Testing.csproj.CopyComplete
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Testing\obj\Debug\netcoreapp2.2\ID3_Testing.dll
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\DecisionTree\ID3_Algorithm_NG\ID3_Testing\obj\Debug\netcoreapp2.2\ID3_Testing.pdb
