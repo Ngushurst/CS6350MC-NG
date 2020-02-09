@@ -48,9 +48,10 @@ namespace ID3_Algorithm_NG
                 ID3_Node Tree = ID3Tools.ID3(attributeCars, DataCars, depth, ID3Tools.EntropyCalucalation.IG);
                 //add the tree to the string builder and prepare to write it to a file.
 
-                Double error = ID3Tools.FindTestError(TestCars, attributeCars, Tree);
+                Double TrainError = ID3Tools.FindTestError(DataCars, attributeCars, Tree);
+                Double TestError = ID3Tools.FindTestError(TestCars, attributeCars, Tree);
 
-                TreeLayout.Append("Information Gain Cars, Max Depth of " + depth + ". Error = "+ error + " \n \n" + Tree.PrintTree(attributeCars.ToArray()) + "\n ----------------------------------------------------------------- \n");
+                TreeLayout.Append("Information Gain Cars, Max Depth of " + depth + ". Test Error = "+ TestError + ". TrainError = " + TrainError +" \n \n" /*+ Tree.PrintTree(attributeCars.ToArray())*/ + "\n ----------------------------------------------------------------- \n");
                 Console.WriteLine("Finished an IG Tree");
             }
 
@@ -59,26 +60,30 @@ namespace ID3_Algorithm_NG
                 ID3_Node Tree = ID3Tools.ID3(attributeCars, DataCars, depth, ID3Tools.EntropyCalucalation.GI);
                 //add the tree to the string builder and prepare to write it to a file.
 
-                Double error = ID3Tools.FindTestError(TestCars, attributeCars, Tree);
+                Double TrainError = ID3Tools.FindTestError(DataCars, attributeCars, Tree);
+                Double TestError = ID3Tools.FindTestError(TestCars, attributeCars, Tree);
 
-                TreeLayout.Append("Gini Index Cars, Max Depth of " + depth + ". Error = " + error + " \n \n" /*+ Tree.PrintTree(attributeCars.ToArray())*/ + "\n ----------------------------------------------------------------- \n");
+                TreeLayout.Append("Gini Index Cars, Max Depth of " + depth + ". Test Error = " + TestError + ". TrainError = " + TrainError + " \n \n" /*+ Tree.PrintTree(attributeCars.ToArray())*/ + "\n ----------------------------------------------------------------- \n");
                 Console.WriteLine("Finished a GI Tree");
             }
             
             for (int depth = 1; depth < 7; depth++)
             {
-                //continue;
                 ID3_Node Tree = ID3Tools.ID3(attributeCars, DataCars, depth, ID3Tools.EntropyCalucalation.ME);
                 //add the tree to the string builder and prepare to write it to a file.
 
-                Double error = ID3Tools.FindTestError(TestCars, attributeCars, Tree);
+                Double TrainError = ID3Tools.FindTestError(DataCars, attributeCars, Tree);
+                Double TestError = ID3Tools.FindTestError(TestCars, attributeCars, Tree);
 
-                TreeLayout.Append("Majority Error Cars, Max Depth of " + depth + ". Error = " + error + " \n \n" /*+ Tree.PrintTree(attributeCars.ToArray())*/ + "\n ----------------------------------------------------------------- \n");
+                TreeLayout.Append("Majority Error Cars, Max Depth of " + depth + ". Test Error = " + TestError + ". TrainError = " + TrainError + " \n \n" /*+ Tree.PrintTree(attributeCars.ToArray())*/ + "\n ----------------------------------------------------------------- \n");
                 Console.WriteLine("Finished an ME Tree");
             }
 
             Console.WriteLine("Writing all results to ResultsCars.txt");
             System.IO.File.WriteAllText(@"ResultsCars.txt", TreeLayout.ToString());
+
+            // ========= Part 2 ============= //
+            // bank information
         }
     }
 }

@@ -21,7 +21,7 @@ namespace ID3_Algorithm_NG
             {
                 //The next line assumes that the last attribute is always the final one, and the only final one.
                 //Attributes that are final are marked, so you should be able to change that behavior very easily.
-                double[] proportions = GetLabelDistribution(data, attributes.Last(), attributes.Count - 1);
+                double[] proportions = GetLabelDistribution(data, attributes.Last(), attributes.Last().ID);
                 double entropy = CalculateEntropy(proportions, calc);
                 if (entropy == 0) //set only has one output label
                 {
@@ -69,7 +69,7 @@ namespace ID3_Algorithm_NG
                             double weight = (double)(set.Count) / (double) data.Count; //percentage of data represented by 'set'
                             if (set.Count > 0)
                             {
-                                double[] distribution = GetLabelDistribution(set, attributes.Last(), attributes.Count - 1);
+                                double[] distribution = GetLabelDistribution(set, attributes.Last(), attributes.Last().ID-1);
                                 sumEntropy += weight * CalculateEntropy(distribution, calc); //weighted entropy value
                             }
                         }

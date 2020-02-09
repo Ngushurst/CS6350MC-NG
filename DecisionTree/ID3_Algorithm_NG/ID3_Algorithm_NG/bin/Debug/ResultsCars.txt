@@ -1,72 +1,72 @@
-Information Gain Cars, Max Depth of 1. Error = 0.54532967032967 
- 
-safety 0	
-	label 1	FinalLabel == unacc
-	label 1	FinalLabel == acc
-	label 1	FinalLabel == good
-
- ----------------------------------------------------------------- 
-Information Gain Cars, Max Depth of 2. Error = 0.54532967032967 
- 
-safety 0	
-	label 1	FinalLabel == unacc
-	label 1	FinalLabel == acc
-	label 1	FinalLabel == good
-
- ----------------------------------------------------------------- 
-Information Gain Cars, Max Depth of 3. Error = 0.54532967032967 
- 
-safety 0	
-	label 1	FinalLabel == unacc
-	label 1	FinalLabel == acc
-	label 1	FinalLabel == good
-
- ----------------------------------------------------------------- 
-Information Gain Cars, Max Depth of 4. Error = 0.54532967032967 
- 
-safety 0	
-	label 1	FinalLabel == unacc
-	label 1	FinalLabel == acc
-	label 1	FinalLabel == good
-
- ----------------------------------------------------------------- 
-Information Gain Cars, Max Depth of 5. Error = 0.54532967032967 
- 
-safety 0	
-	label 1	FinalLabel == unacc
-	label 1	FinalLabel == acc
-	label 1	FinalLabel == good
-
- ----------------------------------------------------------------- 
-Information Gain Cars, Max Depth of 6. Error = 0.54532967032967 
- 
-safety 0	
-	label 1	FinalLabel == unacc
-	label 1	FinalLabel == acc
-	label 1	FinalLabel == good
-
- ----------------------------------------------------------------- 
-Gini Index Cars, Max Depth of 1. Error = 0.54532967032967 
+Information Gain Cars, Max Depth of 1. Test Error = 0.296703296703297. TrainError = 0.302 
  
 
  ----------------------------------------------------------------- 
-Gini Index Cars, Max Depth of 2. Error = 0.54532967032967 
+Information Gain Cars, Max Depth of 2. Test Error = 0.313186813186813. TrainError = 0.292 
  
 
  ----------------------------------------------------------------- 
-Gini Index Cars, Max Depth of 3. Error = 0.54532967032967 
+Information Gain Cars, Max Depth of 3. Test Error = 0.260989010989011. TrainError = 0.228 
  
 
  ----------------------------------------------------------------- 
-Gini Index Cars, Max Depth of 4. Error = 0.54532967032967 
+Information Gain Cars, Max Depth of 4. Test Error = 0.324175824175824. TrainError = 0.205 
  
 
  ----------------------------------------------------------------- 
-Gini Index Cars, Max Depth of 5. Error = 0.54532967032967 
+Information Gain Cars, Max Depth of 5. Test Error = 0.190934065934066. TrainError = 0.0659999999999999 
  
 
  ----------------------------------------------------------------- 
-Gini Index Cars, Max Depth of 6. Error = 0.54532967032967 
+Information Gain Cars, Max Depth of 6. Test Error = 0.190934065934066. TrainError = 0.0659999999999999 
+ 
+
+ ----------------------------------------------------------------- 
+Gini Index Cars, Max Depth of 1. Test Error = 0.296703296703297. TrainError = 0.302 
+ 
+
+ ----------------------------------------------------------------- 
+Gini Index Cars, Max Depth of 2. Test Error = 0.313186813186813. TrainError = 0.292 
+ 
+
+ ----------------------------------------------------------------- 
+Gini Index Cars, Max Depth of 3. Test Error = 0.260989010989011. TrainError = 0.228 
+ 
+
+ ----------------------------------------------------------------- 
+Gini Index Cars, Max Depth of 4. Test Error = 0.324175824175824. TrainError = 0.205 
+ 
+
+ ----------------------------------------------------------------- 
+Gini Index Cars, Max Depth of 5. Test Error = 0.190934065934066. TrainError = 0.0659999999999999 
+ 
+
+ ----------------------------------------------------------------- 
+Gini Index Cars, Max Depth of 6. Test Error = 0.190934065934066. TrainError = 0.0659999999999999 
+ 
+
+ ----------------------------------------------------------------- 
+Majority Error Cars, Max Depth of 1. Test Error = 0.296703296703297. TrainError = 0.302 
+ 
+
+ ----------------------------------------------------------------- 
+Majority Error Cars, Max Depth of 2. Test Error = 0.313186813186813. TrainError = 0.292 
+ 
+
+ ----------------------------------------------------------------- 
+Majority Error Cars, Max Depth of 3. Test Error = 0.260989010989011. TrainError = 0.228 
+ 
+
+ ----------------------------------------------------------------- 
+Majority Error Cars, Max Depth of 4. Test Error = 0.324175824175824. TrainError = 0.205 
+ 
+
+ ----------------------------------------------------------------- 
+Majority Error Cars, Max Depth of 5. Test Error = 0.190934065934066. TrainError = 0.0659999999999999 
+ 
+
+ ----------------------------------------------------------------- 
+Majority Error Cars, Max Depth of 6. Test Error = 0.190934065934066. TrainError = 0.0659999999999999 
  
 
  ----------------------------------------------------------------- 
