@@ -21,7 +21,7 @@ namespace ID3_Algorithm_NG
             {
                 //The next line assumes that the last attribute is always the final one, and the only final one.
                 //Attributes that are final are marked, so you should be able to change that behavior very easily.
-                double[] proportions = GetLabelDistribution(data, attributes.Last(), attributes.Last().ID);
+                double[] proportions = GetLabelDistribution(data, attributes.Last());
                 double entropy = CalculateEntropy(proportions, calc);
                 if (entropy == 0) //set only has one output label
                 {
@@ -69,7 +69,7 @@ namespace ID3_Algorithm_NG
                             double weight = (double)(set.Count) / (double) data.Count; //percentage of data represented by 'set'
                             if (set.Count > 0)
                             {
-                                double[] distribution = GetLabelDistribution(set, attributes.Last(), attributes.Last().ID-1);
+                                double[] distribution = GetLabelDistribution(set, attributes.Last());
                                 sumEntropy += weight * CalculateEntropy(distribution, calc); //weighted entropy value
                             }
                         }
@@ -124,7 +124,7 @@ namespace ID3_Algorithm_NG
 
                     if (nullChildren.Count == Children.Count) //All children are null
                     {
-                        double[] proportion = GetLabelDistribution(data, attributes.Last(), data[0].AttributeVals.Length-1);
+                        double[] proportion = GetLabelDistribution(data, attributes.Last());
                         double max = 0;
                         int mode = -1; //number representing most common Final label in the current dataset
                         for (int i = 0; i<proportion.Length; i++)
@@ -148,22 +148,55 @@ namespace ID3_Algorithm_NG
             return null;
         }
 
-        public static List<Case> ParseCSV(Attribute[] Attributes, String Filepath)
+        /// <summary>
+        /// Parse CSV with a pregenerated list of attributes, except that this one will define numeric attributes based on the data if true is passed in as the third parameter
+        /// </summary>
+        /// <param name="Attributes"></param>
+        /// <param name="Filepath"></param>
+        /// <param name="defineNumericAtt"></param>
+        /// <returns></returns>
+        public static List<Case> ParseCSV(Attribute[] Attributes, String Filepath, bool defineNumericAtt)
         {
             //read all lines of the CSV file
-            String[] rawCases = System.IO.File.ReadAllLines(Filepath);
-
-            if (rawCases.Length == 0)
+            String[] input = System.IO.File.ReadAllLines(Filepath);
+            if (input.Length == 0)
             {
                 throw new MissingFieldException("File must have at least one data point");
             }
 
+            String[][] rawCases = new String[input.Length][];
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                rawCases[i] = input[i].Split(','); //split all the strings and store them in raw cases
+            }
+
+
             List<Case> data = new List<Case>(rawCases.Length);
             List<int> unidentifiedID = new List<int>(); //stores the ID's of all the unidentified cases
 
+            if (defineNumericAtt)
+            {
+                //look for numeric attributes and find the medians for them.
+                foreach (Attribute att in Attributes)
+                {
+                    if (att.IsNumeric())
+                    {
+                        List<int> NumValues = new List<int>(input.Length);
+                        foreach (String[] vals in rawCases)
+                        {
+                            NumValues.Add(int.Parse(vals[att.ID])); //take the corresponding value for the attribute and put it into the list
+                        }
+                        //now that we have all the values, find the median.
+                        NumValues.Sort();
+                        int median = NumValues[NumValues.Count / 2]; //go halfway through to get the median.
+                        att.setNumericVariants(median); //generate the two variants for the numeric attribute
+                    }
+                }
+            }
             for (int i = 0; i < rawCases.Length; i++)
             {
-                String[] current = rawCases[i].Split(',');
+                String[] current = rawCases[i];
                 int[] caseVars = new int[current.Length]; //array to hold all the relevant values in the case
 
 
@@ -175,13 +208,13 @@ namespace ID3_Algorithm_NG
                 for (int j = 0; j < current.Length; j++)
                 {
                     int varID = Attributes[j].GetVarID(current[j]);
-                    if(varID == -1) //unrecognized attribute value. Assumed to be unknown and will be replaced by a fractional count
+                    if (varID == -1) //unrecognized attribute value. Assumed to be unknown and will be replaced by a fractional count
                     {
                         unidentifiedID.Add(i); //toss a reference to it onto this stack. Will add multiple copies of the same number for multiple missing values
                     }
                     caseVars[j] = varID; //record the variant number by the attribute
-                    
-                    
+
+
                 }
 
                 data.Add(new Case(i, caseVars)); //add the case to the list
@@ -190,77 +223,173 @@ namespace ID3_Algorithm_NG
 
             if (unidentifiedID.Count > 0)
             {//If there are items that have unidentified attribute values, replace them with fractional counts.
-                List<Case> FractionalCases = new List<Case>();
-
-                List<int> CasesToDelete = new List<int>(); //a list of cases to remove once we've built all of their replacements
-
-                int lastID = -1; //an integer to make sure that we don't try to operate on the same item multiple times in the case of it missing values. \_:)_/ This is buggy, but I don't think it's a problem for this assignment
-
-                for(int a = 0; a<Attributes.Length-2; a++) //go through all the attributes (not including final ones) and check for missing values
+                if (false) //Create fractional cases to fill in missing values.
                 {
-                    List<int> CasesToReplicate = new List<int>(); //holds the list of case ID's to replicate on the current attribute
-
-                    for(int IDnum = 0; IDnum < unidentifiedID.Count; IDnum++) //collect all missing values
-                    {
-                        if (unidentifiedID[IDnum] != lastID && data[unidentifiedID[IDnum]].AttributeVals[a] == -1) //attribute is undefined, and we haven't already maked this one
-                        {
-                            CasesToReplicate.Add(unidentifiedID[IDnum]); //record so we can replicate it later
-                            unidentifiedID.RemoveAt(IDnum); //We've found a missing value, so remove it
-                            CasesToDelete.Add(unidentifiedID[IDnum]); //Put away the index and hold on to it later
-                        }
-                    }
-
-                    // found all cases with missing information. Now to tally up the percentage of all the variants
-                    double[] Weights = GetLabelDistribution(data, Attributes[a], a); // the distribution works for any attribute. Apologies for the poor labeling
-
-
-                    // I am deeply sorry about this loop. It is very, very hard to read.
-                    // In summary, it goes through all of the designated cases to replicate them, copies their attributes while varying the unknown one,
-                    // and then uses that copied array of attributes to make a new Case with a weight notated by the position of i in weights.
-                    foreach (int Fc in CasesToReplicate)
-                    {
-                        for (int i = 0; i < Weights.Length; i++) //there is one weight for each attribute variant
-                        {
-                            int[] newVals = new int[Attributes.Length]; //create a replacement array
-                            for(int j = 0; j<Attributes.Length; j++)
-                            {
-                                if(j == a) //if the item is known to be unkown, fill it in with the current variant (i)
-                                {
-                                    newVals[j] = i;
-                                }
-                                else
-                                {
-                                    newVals[j] = data[Fc].AttributeVals[j]; //copy the item if the item was previous defined.
-                                }
-                            }
-                            FractionalCases.Add(new Case(Fc, newVals, Weights[i])); //add the copy to fractional cases.
-                        }
-                    }
-
+                    return FractionalValueFilling(unidentifiedID, data, Attributes);
                 }
-                //Now fractional cases holds all of the new weighted cases.
-                //Cases to delete holds the id's of all of the cases that need to be replaced.
-
-                CasesToDelete.Sort(); //sort the cases to delete from least to greatest.
-                int lastRemoved = -1; //keep track of the last ID that was removed
-                int numRemoved = 0;
-                for(int i = 0; i<CasesToDelete.Count; i++)
+                else if (true) //Default to filling missing values with the majority value.
                 {
-                    if(lastRemoved == CasesToDelete[i]) //if we've already removed this one. Try again on the next one.
-                    {
-                        continue;
-                    }
-                    data.RemoveAt(CasesToDelete[i] - numRemoved); //since the size will go down as the cases go up, we need to shrink the ID accordingly.
-                    numRemoved++; //removed another one
-                    lastRemoved = CasesToDelete[i]; //Keep track of what removed was last
+                    return MajorityValueFilling(unidentifiedID, data, Attributes);
                 }
-
-                //now that we've gotten rid of all the old stuff, dump in all the fractional cases.
-                data.AddRange(FractionalCases);
             }
 
             //return data
             return data;
+        }
+
+        /// <summary>
+        /// Given a list of Case IDs that have missing attribute values, the list of cases, and the attributes that the cases are described by, fill
+        /// in the missing values by taking fractional counts (dividing one missing value into all values based on the weight in the data). On a side note,
+        /// this does not work when cases are missing more than one value.
+        /// </summary>
+        /// <param name="unidentifiedID"></param>
+        /// <param name="data"></param>
+        /// <param name="Attributes"></param>
+        /// <returns></returns>
+        private static List<Case> FractionalValueFilling(List<int> unidentifiedID, List<Case> data, Attribute[] Attributes)
+        {
+            List<Case> FractionalCases = new List<Case>();
+
+            List<int> CasesToDelete = new List<int>(); //a list of cases to remove once we've built all of their replacements
+
+            int lastID = -1; //an integer to make sure that we don't try to operate on the same item multiple times in the case of it missing values. \_:)_/ This is buggy, but I don't think it's a problem for this assignment
+
+            for (int a = 0; a < Attributes.Length - 2; a++) //go through all the attributes (not including final ones) and check for missing values
+            {
+                List<int> CasesToReplicate = new List<int>(); //holds the list of case ID's to replicate on the current attribute
+
+                for (int IDnum = 0; IDnum < unidentifiedID.Count; IDnum++) //collect all missing values
+                {
+                    if (unidentifiedID[IDnum] != lastID && data[unidentifiedID[IDnum]].AttributeVals[a] == -1) //attribute is undefined, and we haven't already maked this one
+                    {
+                        CasesToReplicate.Add(unidentifiedID[IDnum]); //record so we can replicate it later
+                        CasesToDelete.Add(unidentifiedID[IDnum]); //Put away the index and hold on to it later
+                        unidentifiedID.RemoveAt(IDnum); //We've found a missing value, so remove it
+                    }
+                }
+
+                // found all cases with missing information. Now to tally up the percentage of all the variants
+                double[] Weights = GetLabelDistribution(data, Attributes[a]); // the distribution works for any attribute. Apologies for the poor labeling
+
+
+                // I am deeply sorry about this loop. It is very, very hard to read.
+                // In summary, it goes through all of the designated cases to replicate them, copies their attributes while varying the unknown one,
+                // and then uses that copied array of attributes to make a new Case with a weight notated by the position of i in weights.
+                foreach (int Fc in CasesToReplicate)
+                {
+                    for (int i = 0; i < Weights.Length; i++) //there is one weight for each attribute variant
+                    {
+                        int[] newVals = new int[Attributes.Length]; //create a replacement array
+                        for (int j = 0; j < Attributes.Length; j++)
+                        {
+                            if (j == a) //if the item is known to be unkown, fill it in with the current variant (i)
+                            {
+                                newVals[j] = i;
+                            }
+                            else
+                            {
+                                newVals[j] = data[Fc].AttributeVals[j]; //copy the item if the item was previous defined.
+                            }
+                        }
+                        FractionalCases.Add(new Case(Fc, newVals, Weights[i])); //add the copy to fractional cases.
+                    }
+                }
+
+            }
+            //Now fractional cases holds all of the new weighted cases.
+            //Cases to delete holds the id's of all of the cases that need to be replaced.
+
+            CasesToDelete.Sort(); //sort the cases to delete from least to greatest.
+            int lastRemoved = -1; //keep track of the last ID that was removed
+            int numRemoved = 0;
+            for (int i = 0; i < CasesToDelete.Count; i++)
+            {
+                if (lastRemoved == CasesToDelete[i]) //if we've already removed this one. Try again on the next one.
+                {
+                    continue;
+                }
+                data.RemoveAt(CasesToDelete[i] - numRemoved); //since the size will go down as the cases go up, we need to shrink the ID accordingly.
+                numRemoved++; //removed another one
+                lastRemoved = CasesToDelete[i]; //Keep track of what removed was last
+            }
+
+            //now that we've gotten rid of all the old stuff, dump in all the fractional cases.
+            data.AddRange(FractionalCases);
+            return data;
+        }
+
+        /// <summary>
+        /// Given a list of Case IDs that have missing attribute values, the list of cases, and the attributes that the cases are described by, fill
+        /// in the missing values by replacing them with the most common value for that attribute. Works when cases are missing multiple values.
+        /// </summary>
+        /// <param name="unidentifiedID"></param>
+        /// <param name="data"></param>
+        /// <param name="Attributes"></param>
+        /// <returns></returns>
+        private static List<Case> MajorityValueFilling(List<int> unidentifiedID, List<Case> data, Attribute[] Attributes)
+        {
+            int lastID = -1; //an integer to make sure that we don't try to operate on the same item multiple times in the case of it missing multiple values. \_:)_/ This is buggy, but I don't think it's a problem for this assignment
+
+            for (int a = 0; a < Attributes.Length - 2; a++) //go through all the attributes (not including final ones) and check for missing values
+            {
+                List<int> CasesToFill = new List<int>(); //holds the list of case ID's to fill on the current attribute
+
+                for (int IDnum = 0; IDnum < unidentifiedID.Count; IDnum++) //collect all missing values
+                {
+                    if (unidentifiedID[IDnum] != lastID && data[unidentifiedID[IDnum]].AttributeVals[a] == -1) //attribute is undefined, and we haven't already maked this one
+                    {
+                        CasesToFill.Add(unidentifiedID[IDnum]); //record so we can replicate it later
+                        unidentifiedID.RemoveAt(IDnum); //We've found a missing value, so remove it
+                    }
+                }
+
+                // found all cases with missing information. Now to tally up the percentage of all the variants
+                double[] Weights = GetLabelDistribution(data, Attributes[a]); // the distribution works for any attribute. Apologies for the poor labeling
+
+                int MajorityElement = 0; //figure out which variant is the most common (highest weight)
+                double highest = 0;
+                for (int i = 0; i < Weights.Length; i++)
+                {
+                    if(highest < Weights[i])
+                    {
+                        highest = Weights[i];
+                        MajorityElement = i;
+                    }
+                }
+                // I am deeply sorry about this loop. It is very, very hard to read.
+                // In summary, it goes through all of the designated cases to replicate them, copies their attributes while varying the unknown one,
+                // and then uses that copied array of attributes to make a new Case with a weight notated by the position of i in weights.
+                foreach (int Fc in CasesToFill)
+                {
+                    int[] newVals = new int[Attributes.Length]; //create a replacement array
+                    for (int j = 0; j < Attributes.Length; j++)
+                    {
+                        if (j == a) //if the item is known to be unkown, fill it in with the most common item overall.
+                        {
+                            newVals[j] = MajorityElement; 
+                        }
+                        else
+                        {
+                            newVals[j] = data[Fc].AttributeVals[j]; //copy the item if the item was previous defined.
+                        }
+                    }
+                    data[Fc] = new Case(Fc, newVals); //replace the old case with a case that's more complete
+                }
+
+            }
+            //return data now that all of the incomplete data has been replaced.
+
+            return data;
+        }
+
+        /// <summary>
+        /// Builds a List of cases with a pregennerated list of attributes. Will not define Numeric attributes with the data.
+        /// </summary>
+        /// <returns></returns>
+        public static List<Case> ParseCSV(Attribute[] Attributes, String Filepath)
+        {
+            //will not define numeric attributes
+            return ParseCSV(Attributes, Filepath, false);
         }
 
         /// <summary>
@@ -383,7 +512,7 @@ namespace ID3_Algorithm_NG
             { //majority error = 0 + (nonMajority examples / total examples), or better :  1 - (Majority examples / total examples)
                 double majorityProportion = 0;
                 for (int i = 0; i < numLabelType.Length; i++)
-                { //Entropy is the sum of all i*ln(i), where i is the proportion of a given label.
+                {
                     majorityProportion = Math.Max(majorityProportion, numLabelType[i]); //labels already in proportions. Find highest.
                 }
                 return 1 - majorityProportion;
@@ -417,14 +546,14 @@ namespace ID3_Algorithm_NG
         /// </summary>
         /// <param name="Data"></param>
         /// <returns></returns>
-        public static double[] GetLabelDistribution(List<Case> Data, Attribute Final, int attributeNum)
+        public static double[] GetLabelDistribution(List<Case> Data, Attribute attribute)
         {
-            int numVars = Final.numVariants();
+            int numVars = attribute.numVariants();
             double[] output = new double[numVars];
 
             foreach (Case c in Data)
             {
-                int AVal = c.AttributeVals[attributeNum]; // the varID of the attribute value held by C
+                int AVal = c.AttributeVals[attribute.ID]; // the varID of the attribute value held by C
                 if (AVal <= -1)
                 {
                     continue; //value is undefined. proceed to the next value
@@ -552,30 +681,32 @@ namespace ID3_Algorithm_NG
 
     /// <summary>
     /// An attribute by which to differentiate a case of data. Each attribute has a name, array of differentiable forms it may take (Variants),
-    /// and will note if it represents a numerical range or final tag.
+    /// and will note if it represents a numerical range or final tag. The range of a numeric attribute must be defined when examining the training data.
     /// </summary>
     public class Attribute
     {
         public readonly String Name;
         public readonly int ID; //ID refers to the position in the order of the data's representation
         private List<String> Variants;
-        private bool Numerical_Range;
+        private bool Numeric;
+        private int median; //for numeric attributes only. Variants are greater than or equal, or less than the median.
         private bool Final; // If true, this attribute represents a result as opposed to a distinguishing feature.
 
         /// <summary>
-        /// Build a new attribute with all input fields.
+        /// Build a new attribute with all input fields. As a note, it's fine to pass in null for the variants of a numeric attribute
+        /// as the program must find the median of the training data set to define that (done in parse CSV when you pass in the pre-made attributes)
         /// </summary>
         /// <param name="name"></param>
         /// <param name="id"></param>
         /// <param name="variants"></param>
-        /// <param name="numericalrange"></param>
+        /// <param name="numeric"></param>
         /// <param name="final"></param>
-        public Attribute(String name, int id, List<String> variants, bool numericalrange, bool final)
+        public Attribute(String name, int id, List<String> variants, bool numeric, bool final)
         {
             Name = name;
             ID = id;
             Variants = variants;
-            Numerical_Range = numericalrange;
+            Numeric = numeric;
             Final = final;
         }
 
@@ -590,25 +721,35 @@ namespace ID3_Algorithm_NG
         }
 
         /// <summary>
-        /// If true, this attribute represents different ranges of numbers. Ex: 0-10, I>10 
+        /// If true, this attribute represents two ranges of numbers (has two )
         /// </summary>
         /// <returns></returns>
-        public bool IsRange()
+        public bool IsNumeric()
         {
-            return Numerical_Range;
+            return Numeric;
         }
 
         /// <summary>
-        /// Takes in a string representing a variant of the current attribute and tries to add it to the current list.
+        /// Mostly for use regarding a numeric attribute, since it needs to be set after looking over all the data.
+        /// </summary>
+        /// <param name="newVars"></param>
+        public void setNumericVariants(int median)
+        {
+            this.median = median;
+            List<String> newVars = new List<string>(2);
+            newVars.Add("<" + median);
+            newVars.Add(">=" + median);
+            Variants = newVars;
+        }
+
+        /// <summary>
+        /// Takes in a string representing a variant of the current attribute and tries to add it to the current list. Used in simple autodetection,
+        /// and thus is not used for numeric data or data with missing parameters.
         /// </summary>
         /// <param name="variant">A string representing a potentially new variant of this attribute</param>
         /// <returns>True if the variant was able to be addded, or false if the variant was already contained.</returns>
         public bool addVariant(String variant)
         {
-            if (this.Numerical_Range)
-            {
-                throw new NotImplementedException("You fool. You didn't implement that yet");
-            }
 
             if (!Variants.Contains(variant)) //new variant not contained
             {
@@ -637,7 +778,19 @@ namespace ID3_Algorithm_NG
         /// <returns></returns>
         public int GetVarID(String variant)
         {
-            for(int i =0; i<Variants.Count; i++)
+            if (this.Numeric) //a binary numeric attribute that is either below, or above/equal to the median.
+            {
+                if (int.Parse(variant) < median)
+                { //first option
+                    return 0;
+                }
+                else
+                {//greater than or equal
+                    return 1;
+                }
+            }
+
+            for (int i =0; i<Variants.Count; i++) //a categorical attribute
             {
                 if (variant.Equals(Variants[i])){ //found a match
                     return i; //return the list index

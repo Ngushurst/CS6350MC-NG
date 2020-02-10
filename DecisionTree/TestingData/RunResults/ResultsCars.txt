@@ -1,0 +1,1989 @@
+Information Gain Cars, Max Depth of 1. Test Error = 0.296703296703297. TrainError = 0.302 
+ 
+safety 0	
+	label 1	FinalLabel == unacc
+	label 1	FinalLabel == unacc
+	label 1	FinalLabel == unacc
+
+ ----------------------------------------------------------------- 
+Information Gain Cars, Max Depth of 2. Test Error = 0.222527472527473. TrainError = 0.222 
+ 
+safety 0	
+	label 1	FinalLabel == unacc
+	persons 1	
+		label 2	FinalLabel == unacc
+		label 2	FinalLabel == acc
+		label 2	FinalLabel == acc
+	persons 1	
+		label 2	FinalLabel == unacc
+		label 2	FinalLabel == acc
+		label 2	FinalLabel == acc
+
+ ----------------------------------------------------------------- 
+Information Gain Cars, Max Depth of 3. Test Error = 0.196428571428571. TrainError = 0.181 
+ 
+safety 0	
+	label 1	FinalLabel == unacc
+	persons 1	
+		label 2	FinalLabel == unacc
+		buying 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == acc
+			label 3	FinalLabel == acc
+		buying 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == acc
+			label 3	FinalLabel == acc
+			label 3	FinalLabel == acc
+	persons 1	
+		label 2	FinalLabel == unacc
+		buying 2	
+			label 3	FinalLabel == acc
+			label 3	FinalLabel == acc
+			label 3	FinalLabel == acc
+			label 3	FinalLabel == vgood
+		buying 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == acc
+			label 3	FinalLabel == acc
+			label 3	FinalLabel == acc
+
+ ----------------------------------------------------------------- 
+Information Gain Cars, Max Depth of 4. Test Error = 0.151098901098901. TrainError = 0.082 
+ 
+safety 0	
+	label 1	FinalLabel == unacc
+	persons 1	
+		label 2	FinalLabel == unacc
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == unacc
+			lug_boot 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == good
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+			lug_boot 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == good
+			lug_boot 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == good
+	persons 1	
+		label 2	FinalLabel == unacc
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == vgood
+				label 4	FinalLabel == vgood
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == vgood
+				label 4	FinalLabel == vgood
+				label 4	FinalLabel == good
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == vgood
+				label 4	FinalLabel == good
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == vgood
+				label 4	FinalLabel == vgood
+
+ ----------------------------------------------------------------- 
+Information Gain Cars, Max Depth of 5. Test Error = 0.0906593406593407. TrainError = 0.027 
+ 
+safety 0	
+	label 1	FinalLabel == unacc
+	persons 1	
+		label 2	FinalLabel == unacc
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			lug_boot 3	
+				label 4	FinalLabel == unacc
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			maint 3	
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+			maint 3	
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+				doors 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == acc
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			lug_boot 3	
+				label 4	FinalLabel == unacc
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			maint 3	
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+			lug_boot 3	
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				maint 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+				maint 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+	persons 1	
+		label 2	FinalLabel == unacc
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+			maint 3	
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				doors 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+			maint 3	
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+
+ ----------------------------------------------------------------- 
+Information Gain Cars, Max Depth of 6. Test Error = 0.0906593406593407. TrainError = 0.027 
+ 
+safety 0	
+	label 1	FinalLabel == unacc
+	persons 1	
+		label 2	FinalLabel == unacc
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			lug_boot 3	
+				label 4	FinalLabel == unacc
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			maint 3	
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+			maint 3	
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+				doors 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == acc
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			lug_boot 3	
+				label 4	FinalLabel == unacc
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			maint 3	
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+			lug_boot 3	
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				maint 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+				maint 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+	persons 1	
+		label 2	FinalLabel == unacc
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+			maint 3	
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				doors 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+			maint 3	
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+
+ ----------------------------------------------------------------- 
+Gini Index Cars, Max Depth of 1. Test Error = 0.296703296703297. TrainError = 0.302 
+ 
+safety 0	
+	label 1	FinalLabel == unacc
+	label 1	FinalLabel == unacc
+	label 1	FinalLabel == unacc
+
+ ----------------------------------------------------------------- 
+Gini Index Cars, Max Depth of 2. Test Error = 0.222527472527473. TrainError = 0.222 
+ 
+safety 0	
+	label 1	FinalLabel == unacc
+	persons 1	
+		label 2	FinalLabel == unacc
+		label 2	FinalLabel == acc
+		label 2	FinalLabel == acc
+	persons 1	
+		label 2	FinalLabel == unacc
+		label 2	FinalLabel == acc
+		label 2	FinalLabel == acc
+
+ ----------------------------------------------------------------- 
+Gini Index Cars, Max Depth of 3. Test Error = 0.184065934065934. TrainError = 0.176 
+ 
+safety 0	
+	label 1	FinalLabel == unacc
+	persons 1	
+		label 2	FinalLabel == unacc
+		buying 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == acc
+			label 3	FinalLabel == acc
+		lug_boot 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == acc
+			label 3	FinalLabel == acc
+	persons 1	
+		label 2	FinalLabel == unacc
+		buying 2	
+			label 3	FinalLabel == acc
+			label 3	FinalLabel == acc
+			label 3	FinalLabel == acc
+			label 3	FinalLabel == vgood
+		buying 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == acc
+			label 3	FinalLabel == acc
+			label 3	FinalLabel == acc
+
+ ----------------------------------------------------------------- 
+Gini Index Cars, Max Depth of 4. Test Error = 0.137362637362637. TrainError = 0.089 
+ 
+safety 0	
+	label 1	FinalLabel == unacc
+	persons 1	
+		label 2	FinalLabel == unacc
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == unacc
+			lug_boot 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == good
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+		lug_boot 2	
+			buying 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+			buying 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			buying 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == good
+	persons 1	
+		label 2	FinalLabel == unacc
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == vgood
+				label 4	FinalLabel == vgood
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == vgood
+				label 4	FinalLabel == vgood
+				label 4	FinalLabel == good
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == vgood
+				label 4	FinalLabel == good
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == vgood
+				label 4	FinalLabel == vgood
+
+ ----------------------------------------------------------------- 
+Gini Index Cars, Max Depth of 5. Test Error = 0.0906593406593407. TrainError = 0.027 
+ 
+safety 0	
+	label 1	FinalLabel == unacc
+	persons 1	
+		label 2	FinalLabel == unacc
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			lug_boot 3	
+				label 4	FinalLabel == unacc
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			maint 3	
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+			maint 3	
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+				doors 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == acc
+		lug_boot 2	
+			buying 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			buying 3	
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+				maint 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+			buying 3	
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				maint 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+				maint 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+	persons 1	
+		label 2	FinalLabel == unacc
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+			maint 3	
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				doors 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+			maint 3	
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+
+ ----------------------------------------------------------------- 
+Gini Index Cars, Max Depth of 6. Test Error = 0.0906593406593407. TrainError = 0.027 
+ 
+safety 0	
+	label 1	FinalLabel == unacc
+	persons 1	
+		label 2	FinalLabel == unacc
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			lug_boot 3	
+				label 4	FinalLabel == unacc
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			maint 3	
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+			maint 3	
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+				doors 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == acc
+		lug_boot 2	
+			buying 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			buying 3	
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+				maint 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+			buying 3	
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				maint 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				maint 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+				maint 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+	persons 1	
+		label 2	FinalLabel == unacc
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+			maint 3	
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				doors 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+		buying 2	
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			maint 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+			maint 3	
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+
+ ----------------------------------------------------------------- 
+Majority Error Cars, Max Depth of 1. Test Error = 0.296703296703297. TrainError = 0.302 
+ 
+maint 0	
+	label 1	FinalLabel == unacc
+	label 1	FinalLabel == unacc
+	label 1	FinalLabel == unacc
+	label 1	FinalLabel == unacc
+
+ ----------------------------------------------------------------- 
+Majority Error Cars, Max Depth of 2. Test Error = 0.315934065934066. TrainError = 0.301 
+ 
+maint 0	
+	doors 1	
+		label 2	FinalLabel == unacc
+		label 2	FinalLabel == unacc
+		label 2	FinalLabel == unacc
+		label 2	FinalLabel == unacc
+	persons 1	
+		label 2	FinalLabel == unacc
+		label 2	FinalLabel == unacc
+		label 2	FinalLabel == unacc
+	safety 1	
+		label 2	FinalLabel == unacc
+		label 2	FinalLabel == acc
+		label 2	FinalLabel == unacc
+	doors 1	
+		label 2	FinalLabel == unacc
+		label 2	FinalLabel == unacc
+		label 2	FinalLabel == unacc
+		label 2	FinalLabel == unacc
+
+ ----------------------------------------------------------------- 
+Majority Error Cars, Max Depth of 3. Test Error = 0.273351648351648. TrainError = 0.222 
+ 
+maint 0	
+	doors 1	
+		buying 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+		buying 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+		buying 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == acc
+		persons 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+	persons 1	
+		label 2	FinalLabel == unacc
+		safety 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == acc
+		buying 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == acc
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == acc
+	safety 1	
+		label 2	FinalLabel == unacc
+		persons 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == acc
+			label 3	FinalLabel == acc
+		persons 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == acc
+			label 3	FinalLabel == acc
+	doors 1	
+		persons 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+		buying 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+		safety 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == acc
+		persons 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == acc
+
+ ----------------------------------------------------------------- 
+Majority Error Cars, Max Depth of 4. Test Error = 0.212912087912088. TrainError = 0.118 
+ 
+maint 0	
+	doors 1	
+		buying 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			safety 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+			safety 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+		buying 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			safety 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+			safety 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+		buying 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			safety 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			persons 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+		persons 2	
+			label 3	FinalLabel == unacc
+			buying 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+			buying 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == unacc
+	persons 1	
+		label 2	FinalLabel == unacc
+		safety 2	
+			label 3	FinalLabel == unacc
+			buying 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			buying 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == vgood
+		buying 2	
+			label 3	FinalLabel == unacc
+			safety 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			safety 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+			safety 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+	safety 1	
+		label 2	FinalLabel == unacc
+		persons 2	
+			label 3	FinalLabel == unacc
+			buying 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			buying 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == good
+		persons 2	
+			label 3	FinalLabel == unacc
+			buying 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == vgood
+				label 4	FinalLabel == vgood
+			buying 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == vgood
+				label 4	FinalLabel == vgood
+	doors 1	
+		persons 2	
+			label 3	FinalLabel == unacc
+			safety 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			lug_boot 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+		buying 2	
+			safety 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+			persons 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+			persons 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == good
+				label 4	FinalLabel == good
+			persons 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == unacc
+		safety 2	
+			label 3	FinalLabel == unacc
+			persons 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			persons 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+		persons 2	
+			label 3	FinalLabel == unacc
+			safety 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+			safety 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+
+ ----------------------------------------------------------------- 
+Majority Error Cars, Max Depth of 5. Test Error = 0.148351648351648. TrainError = 0.04 
+ 
+maint 0	
+	doors 1	
+		buying 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			safety 3	
+				label 4	FinalLabel == unacc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				persons 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			safety 3	
+				label 4	FinalLabel == unacc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+		buying 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			safety 3	
+				label 4	FinalLabel == unacc
+				persons 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+				persons 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			safety 3	
+				label 4	FinalLabel == unacc
+				persons 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+				persons 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+		buying 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			safety 3	
+				label 4	FinalLabel == unacc
+				persons 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				persons 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			persons 3	
+				label 4	FinalLabel == unacc
+				safety 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+		persons 2	
+			label 3	FinalLabel == unacc
+			buying 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				safety 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == unacc
+			buying 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				safety 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				safety 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+	persons 1	
+		label 2	FinalLabel == unacc
+		safety 2	
+			label 3	FinalLabel == unacc
+			buying 3	
+				label 4	FinalLabel == unacc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+			buying 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+		buying 2	
+			label 3	FinalLabel == unacc
+			safety 3	
+				label 4	FinalLabel == unacc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+			safety 3	
+				label 4	FinalLabel == unacc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+			safety 3	
+				label 4	FinalLabel == unacc
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+	safety 1	
+		label 2	FinalLabel == unacc
+		persons 2	
+			label 3	FinalLabel == unacc
+			buying 3	
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+			buying 3	
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+		persons 2	
+			label 3	FinalLabel == unacc
+			buying 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+			buying 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+	doors 1	
+		persons 2	
+			label 3	FinalLabel == unacc
+			safety 3	
+				label 4	FinalLabel == unacc
+				buying 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				buying 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == good
+			lug_boot 3	
+				label 4	FinalLabel == unacc
+				buying 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == unacc
+				buying 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+		buying 2	
+			safety 3	
+				label 4	FinalLabel == unacc
+				persons 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				persons 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			persons 3	
+				label 4	FinalLabel == unacc
+				safety 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				safety 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			persons 3	
+				label 4	FinalLabel == unacc
+				safety 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+				safety 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+			persons 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				safety 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+		safety 2	
+			label 3	FinalLabel == unacc
+			persons 3	
+				label 4	FinalLabel == unacc
+				buying 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+				buying 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == acc
+			persons 3	
+				label 4	FinalLabel == unacc
+				buying 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == good
+				label 4	FinalLabel == acc
+		persons 2	
+			label 3	FinalLabel == unacc
+			safety 3	
+				label 4	FinalLabel == unacc
+				buying 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				buying 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+			safety 3	
+				label 4	FinalLabel == unacc
+				buying 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+				buying 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == good
+
+ ----------------------------------------------------------------- 
+Majority Error Cars, Max Depth of 6. Test Error = 0.148351648351648. TrainError = 0.04 
+ 
+maint 0	
+	doors 1	
+		buying 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			safety 3	
+				label 4	FinalLabel == unacc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				persons 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			safety 3	
+				label 4	FinalLabel == unacc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+		buying 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			safety 3	
+				label 4	FinalLabel == unacc
+				persons 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+				persons 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			safety 3	
+				label 4	FinalLabel == unacc
+				persons 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+				persons 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+		buying 2	
+			label 3	FinalLabel == unacc
+			label 3	FinalLabel == unacc
+			safety 3	
+				label 4	FinalLabel == unacc
+				persons 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				persons 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			persons 3	
+				label 4	FinalLabel == unacc
+				safety 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+		persons 2	
+			label 3	FinalLabel == unacc
+			buying 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				safety 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == unacc
+			buying 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == unacc
+				safety 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				safety 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+	persons 1	
+		label 2	FinalLabel == unacc
+		safety 2	
+			label 3	FinalLabel == unacc
+			buying 3	
+				label 4	FinalLabel == unacc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+			buying 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+		buying 2	
+			label 3	FinalLabel == unacc
+			safety 3	
+				label 4	FinalLabel == unacc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+			safety 3	
+				label 4	FinalLabel == unacc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+			safety 3	
+				label 4	FinalLabel == unacc
+				doors 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+	safety 1	
+		label 2	FinalLabel == unacc
+		persons 2	
+			label 3	FinalLabel == unacc
+			buying 3	
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+			buying 3	
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				label 4	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+		persons 2	
+			label 3	FinalLabel == unacc
+			buying 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				lug_boot 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+			buying 3	
+				label 4	FinalLabel == acc
+				label 4	FinalLabel == acc
+				doors 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+				lug_boot 4	
+					label 5	FinalLabel == good
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+	doors 1	
+		persons 2	
+			label 3	FinalLabel == unacc
+			safety 3	
+				label 4	FinalLabel == unacc
+				buying 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				buying 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == good
+			lug_boot 3	
+				label 4	FinalLabel == unacc
+				buying 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == unacc
+				buying 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+		buying 2	
+			safety 3	
+				label 4	FinalLabel == unacc
+				persons 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				persons 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			persons 3	
+				label 4	FinalLabel == unacc
+				safety 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+				safety 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+			persons 3	
+				label 4	FinalLabel == unacc
+				safety 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+				safety 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+			persons 3	
+				label 4	FinalLabel == unacc
+				label 4	FinalLabel == acc
+				safety 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+		safety 2	
+			label 3	FinalLabel == unacc
+			persons 3	
+				label 4	FinalLabel == unacc
+				buying 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+				buying 4	
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == acc
+			persons 3	
+				label 4	FinalLabel == unacc
+				buying 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == good
+				label 4	FinalLabel == acc
+		persons 2	
+			label 3	FinalLabel == unacc
+			safety 3	
+				label 4	FinalLabel == unacc
+				buying 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == unacc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+				buying 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == vgood
+			safety 3	
+				label 4	FinalLabel == unacc
+				buying 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == good
+					label 5	FinalLabel == good
+				buying 4	
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == acc
+					label 5	FinalLabel == vgood
+					label 5	FinalLabel == good
+
+ ----------------------------------------------------------------- 
