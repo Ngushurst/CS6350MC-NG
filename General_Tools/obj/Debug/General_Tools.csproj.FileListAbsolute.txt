@@ -1,0 +1,6 @@
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\General_Tools\bin\Debug\General_Tools_Copy.dll
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\General_Tools\bin\Debug\General_Tools_Copy.pdb
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\General_Tools\obj\Debug\General_Tools.csproj.CoreCompileInputs.cache
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\General_Tools\obj\Debug\General_Tools_Copy.dll
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\General_Tools\obj\Debug\General_Tools_Copy.pdb
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\General_Tools\obj\Debug\General_Tools.csprojAssemblyReference.cache

@@ -13,7 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ID3_Algorithm_NG\ID3_Algorithm_NG.csproj" />
+    <ProjectReference Include="..\..\..\General_Tools\General_Tools.csproj" />
+    <ProjectReference Include="..\ID3_Algorithm\ID3_Algorithm.csproj" />
   </ItemGroup>
 
 </Project>

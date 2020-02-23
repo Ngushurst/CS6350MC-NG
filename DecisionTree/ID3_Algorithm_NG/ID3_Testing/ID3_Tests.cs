@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using ID3_Algorithm_NG;
+using ID3_Algorithm;
+using General_Tools;
 
 namespace UnitTestProject1
 {
@@ -13,9 +14,9 @@ namespace UnitTestProject1
         public void TestAutoDetect()
         {
             
-            List<Attribute> attributes = new List<Attribute>();
+            List<DAttribute> attributes = new List<DAttribute>();
             //read in a simple file with 7 examples with 5 attributes
-            List<Case> TestData = ID3Tools.ParseCSV(TestPath + @"\simple\simple1.txt", out attributes);
+            List<Case> TestData = DRT.ParseCSV(TestPath + @"\simple\simple1.txt", out attributes);
 
             Assert.AreEqual(7, TestData.Count);
             Assert.AreEqual(5, attributes.Count);
@@ -26,16 +27,16 @@ namespace UnitTestProject1
         {
             //Initialize the attributes beforehand to make it more readable when debugging
 
-            List<Attribute> attributes = new List<Attribute>(5);
+            List<DAttribute> attributes = new List<DAttribute>(5);
             string[] alphabet = new string[2];
             alphabet[0] = "0"; alphabet[1] = "1";
-            attributes.Add(new Attribute("X_1", 0, new List<string>(alphabet), false, false));
-            attributes.Add(new Attribute("X_2", 1, new List<string>(alphabet), false, false));
-            attributes.Add(new Attribute("X_3", 2, new List<string>(alphabet), false, false));
-            attributes.Add(new Attribute("X_4", 3, new List<string>(alphabet), false, false));
-            attributes.Add(new Attribute("VarFinal", 4, new List<string>(alphabet), false, true));
+            attributes.Add(new DAttribute("X_1", 0, new List<string>(alphabet), false, false));
+            attributes.Add(new DAttribute("X_2", 1, new List<string>(alphabet), false, false));
+            attributes.Add(new DAttribute("X_3", 2, new List<string>(alphabet), false, false));
+            attributes.Add(new DAttribute("X_4", 3, new List<string>(alphabet), false, false));
+            attributes.Add(new DAttribute("VarFinal", 4, new List<string>(alphabet), false, true));
 
-            List<Case> TestData = ID3Tools.ParseCSV(attributes.ToArray(), TestPath + @"\simple\simple1.txt");
+            List<Case> TestData = DRT.ParseCSV(attributes.ToArray(), TestPath + @"\simple\simple1.txt");
 
 
             ID3_Node Tree = ID3Tools.ID3(attributes, TestData, 999, ID3Tools.EntropyCalucalation.IG);
@@ -48,16 +49,16 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestDepthLimit()
         {
-            List<Attribute> attributes = new List<Attribute>(5);
+            List<DAttribute> attributes = new List<DAttribute>(5);
             string[] alphabet = new string[2];
             alphabet[0] = "0"; alphabet[1] = "1";
-            attributes.Add(new Attribute("X_1", 0, new List<string>(alphabet), false, false));
-            attributes.Add(new Attribute("X_2", 1, new List<string>(alphabet), false, false));
-            attributes.Add(new Attribute("X_3", 2, new List<string>(alphabet), false, false));
-            attributes.Add(new Attribute("X_4", 3, new List<string>(alphabet), false, false));
-            attributes.Add(new Attribute("VarFinal", 4, new List<string>(alphabet), false, true));
+            attributes.Add(new DAttribute("X_1", 0, new List<string>(alphabet), false, false));
+            attributes.Add(new DAttribute("X_2", 1, new List<string>(alphabet), false, false));
+            attributes.Add(new DAttribute("X_3", 2, new List<string>(alphabet), false, false));
+            attributes.Add(new DAttribute("X_4", 3, new List<string>(alphabet), false, false));
+            attributes.Add(new DAttribute("VarFinal", 4, new List<string>(alphabet), false, true));
 
-            List<Case> TestData = ID3Tools.ParseCSV(attributes.ToArray(), TestPath + @"\simple\simple1.txt");
+            List<Case> TestData = DRT.ParseCSV(attributes.ToArray(), TestPath + @"\simple\simple1.txt");
 
 
             ID3_Node Tree = ID3Tools.ID3(attributes, TestData, 1, ID3Tools.EntropyCalucalation.IG);
