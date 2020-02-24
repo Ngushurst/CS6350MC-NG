@@ -17,7 +17,46 @@ namespace ID3_Algorithm
         /// <summary>
         /// Creates the root of a decision tree and recursively builds the rest.
         /// </summary>
+        /// <param name="attributes">A list of the attributes that describe the data, in the order that they do so.</param>
+        /// <param name="data">A list of cases representing the training data</param>
+        /// <param name="DepthRemaining">The allowed number of levels for the tree to reach</param>
+        /// <param name="calc">The desired method of entropy calculation. IG = Information Gain. GI = Gini Index. MA = Majority Error</param>
+        /// <returns></returns>
         public static ID3_Node ID3(List<DAttribute> attributes, List<Case> data, int DepthRemaining, EntropyCalucalation calc)
+        {
+            return ID3(attributes, data, null, 0, false, DepthRemaining, calc);
+        }
+
+
+        /// <summary>
+        /// Creates the root of a decision tree and recursively builds the rest. This particular variant is adjusted for the random
+        /// forest ensemble learning algorithm.
+        /// </summary>
+        /// <param name="attributes">A list of the attributes that describe the data, in the order that they do so.</param>
+        /// <param name="data">A list of cases representing the training data</param>
+        /// <param name="Gen">A random number generator used to determine which attributes to use at any given level</param>
+        /// <param name="subAttSize">The number of attributes the tree is allowed to use at any given level</param>
+        /// <param name="DepthRemaining">The allowed number of levels for the tree to reach</param>
+        /// <param name="calc">The desired method of entropy calculation. IG = Information Gain. GI = Gini Index. MA = Majority Error</param>
+        /// <returns></returns>
+        public static ID3_Node ID3(List<DAttribute> attributes, List<Case> data, Random Gen, int subAttSize, int DepthRemaining, EntropyCalucalation calc)
+        {
+            return ID3(attributes, data, Gen, subAttSize, true, DepthRemaining, calc);
+        }
+
+            /// <summary>
+            /// Creates the root of a decision tree and recursively builds the rest. This is the method that actually does it, while the other copies
+            /// just call this one with different input parameters.
+            /// </summary>
+            /// <param name="attributes">A list of the attributes that describe the data, in the order that they do so.</param>
+            /// <param name="data">A list of cases representing the training data</param>
+            /// <param name="Gen">A random number generator used to determine which attributes to use at any given level</param>
+            /// <param name="subAttSize">The number of attributes the tree is allowed to use at any given level</param>
+            /// <param name="limitAttributes">Bool representing whether the tree should limit the number of attributes used at any level</param>
+            /// <param name="DepthRemaining">The allowed number of levels for the tree to reach</param>
+            /// <param name="calc">The desired method of entropy calculation. IG = Information Gain. GI = Gini Index. MA = Majority Error</param>
+            /// <returns></returns>
+        private static ID3_Node ID3(List<DAttribute> attributes, List<Case> data, Random Gen, int subAttSize, bool limitAttributes, int DepthRemaining, EntropyCalucalation calc)
         {
             if (DepthRemaining > -1 && attributes.Count > 1 && data.Count > 0) // Check more layers are allowed and if there are usable attributes remaining, and that there's at least one data point
             {
@@ -40,15 +79,55 @@ namespace ID3_Algorithm
                 }
                 else
                 { //find the attribute that results in the lowest entropy and divide on that.
+
+                    List<DAttribute> WorkingAttributes = attributes; //by default, the usable attributes will be all the remaining attributes
+                    if (limitAttributes)//if we're to limit the attributes
+                    {
+                        if(attributes.Count <= subAttSize)
+                        {
+                            //just use all of them since that's how many we're to use
+                        }
+
+                        else
+                        {//pick subAttSize attributes at random to use
+                            WorkingAttributes = new List<DAttribute>(subAttSize);
+                            int[] usedAttributes = new int[subAttSize];
+                            for (int i = 0; i < subAttSize; i++)
+                                usedAttributes[i] = -1; //initialize all to unusable values
+
+                            for (int i = 0; i < subAttSize; i++)
+                            {
+                                int random = Gen.Next(attributes.Count - 1 ); //get a random index for attributes, not including the final label.
+                                bool repeat = false; //track if random has already used this index for this set we're building.
+                                for(int j = 0; j<subAttSize; j++)
+                                {
+                                    if(usedAttributes[i] == random)
+                                    { //found a copy. 
+                                        repeat = true;
+                                        break;
+                                    }
+                                    WorkingAttributes.Add(attributes[random]);
+                                }
+
+                                if (repeat)
+                                {
+                                    i--; //decrement i so that we can try again at the same i value.
+                                    continue;
+                                }
+
+                                WorkingAttributes[i] = attributes[i]; //add the new item to working attributes
+                            }
+                        }
+                    }
                     List<Case>[] LowestEntropySets = null; //default
                     double LowestEntropy = double.PositiveInfinity; //max value by default.
                     int BestAttNum = 0; //default
                     int BestAttID = -1;
 
-                    for (int a = 0; a < attributes.Count-1; a++) //check all attributes, but the last (that's the label, and we don't want to judge by that.)
+                    for (int a = 0; a < WorkingAttributes.Count-1; a++) //check all attributes, but the last (that's the label, and we don't want to judge by that.)
                     {
-                        int numVars = attributes[a].numVariants();
-                        int aID = attributes[a].ID; //refers to the position in a case's data to find the desired attribute value.
+                        int numVars = WorkingAttributes[a].numVariants();
+                        int aID = WorkingAttributes[a].ID; //refers to the position in a case's data to find the desired attribute value.
                         List<Case>[] CurrentSets = new List<Case>[numVars];
 
                         for (int i = 0; i < numVars; i++) //initialize all the lists
@@ -71,7 +150,7 @@ namespace ID3_Algorithm
                             double weight = (double)(set.Count) / (double) data.Count; //percentage of data represented by 'set'
                             if (set.Count > 0)
                             {
-                                double[] distribution = GetLabelDistribution(set, attributes.Last());
+                                double[] distribution = GetLabelDistribution(set, attributes.Last()); //assuming the last attribute is the final one.
                                 sumEntropy += weight * CalculateEntropy(distribution, calc); //weighted entropy value
                             }
                         }
@@ -89,7 +168,17 @@ namespace ID3_Algorithm
 
                     List<ID3_Node> Children = new List<ID3_Node>();
                     List<DAttribute> UpdatedAttributes = attributes.ToList(); //Copy the list and remove the winning attribute (dividing by it again wouldn't be helpful.)
-                    UpdatedAttributes.RemoveAt(BestAttNum);
+                    //UpdatedAttributes.RemoveAt(BestAttNum);
+
+                    for(int i = 0; i < UpdatedAttributes.Count; i++)
+                    {
+                        if(UpdatedAttributes[i].ID == BestAttID)
+                        {
+                            UpdatedAttributes.RemoveAt(i);
+                            break;
+                        }
+                    }
+
                     //create children recursively by use of the ID3 algorithm
                     for (int i = 0; i < LowestEntropySets.Length; i++)
                     {
