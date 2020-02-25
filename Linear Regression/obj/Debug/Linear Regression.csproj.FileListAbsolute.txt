@@ -1,0 +1,6 @@
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Linear Regression\bin\Debug\Linear Regression.exe
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Linear Regression\bin\Debug\Linear Regression.pdb
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Linear Regression\obj\Debug\Linear Regression.csprojAssemblyReference.cache
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Linear Regression\obj\Debug\Linear Regression.csproj.CoreCompileInputs.cache
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Linear Regression\obj\Debug\Linear Regression.exe
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Linear Regression\obj\Debug\Linear Regression.pdb
