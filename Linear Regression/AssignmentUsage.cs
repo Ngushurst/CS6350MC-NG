@@ -20,7 +20,7 @@ namespace Linear_Regression
             //Batch Gradient Decent
             if (true)
             {
-                GradientDecent Batch = new GradientDecent(ConcreteTrain);
+                GradientDecent Batch = new GradientDecent(ConcreteTrain, new double[]{1 , 1.05});
                 StringBuilder output = new StringBuilder();
                 output.Append("Num, Weight,-,-,-,-,-,-,LearnRate,TrainError\n");
 
@@ -66,14 +66,14 @@ namespace Linear_Regression
             //Stochastic Gradient Decent
             if (true)
             {
-                GradientDecent Stochastic = new GradientDecent(ConcreteTrain);
+                GradientDecent Stochastic = new GradientDecent(ConcreteTrain, new double[] { 1, 1.005 });
                 StringBuilder output = new StringBuilder();
                 output.Append("Num, Weight,-,-,-,-,-,-,LearnRate,TrainError\n");
 
                 int itCount = 0;
                 double limitTest = double.PositiveInfinity;
 
-                while (limitTest > limit)
+                while (limitTest > limit)//limitTest > limit
                 {
                     output.Append(itCount + ",");
                     itCount++; //increment

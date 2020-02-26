@@ -50,5 +50,23 @@ namespace General_Tools
         {
             return Weight;
         }
+
+
+        /// <summary>
+        /// Converts all the weights in the list of cases to be a relative percentage of the whole weight (which will then sum to 1).
+        /// </summary>
+        public static void NormalizeWeights(List<Case> data)
+        {
+            double sumWeight = 0;
+            foreach (Case c in data)
+            {
+                sumWeight += c.getWeight();
+            }
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                data[i].setWeight(data[i].getWeight() / sumWeight); //every weight now equal to self/totalWeight (converted to percentage summing to 1)
+            }
+        }
     }
 }

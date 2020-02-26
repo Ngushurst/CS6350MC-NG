@@ -18,6 +18,8 @@ namespace EnsembleLearning
             double[] votes = new double[numTrees];
             //each index gets a decision stump and a corresponding wieght based on its accuracy
 
+            Case.NormalizeWeights(dataCopy);
+
             for (int i = 0; i < numTrees; i++)
             { //generate that many trees
                 ID3_Node current = ID3Tools.ID3(attributes, dataCopy, 1, ID3Tools.EntropyCalucalation.IG);
@@ -30,18 +32,27 @@ namespace EnsembleLearning
                     foreach(Case c in dataCopy)
                     {
                         int treeResult = ID3Tools.TestWithTree(c, current);
-                        if(treeResult == c.AttributeVals.Last())
-                            dataCopy[i].setWeight(Math.Pow(dataCopy[i].getWeight(), -vote)); //on correct, set weight to weight^-vote
+                        if (treeResult == c.AttributeVals.Last())
+                        {
+                            double newWeight = c.getWeight() * Math.Pow(Math.E, -vote);
+                            c.setWeight(newWeight); //on correct, set weight to weight^-vote
+                        }
                         else
-                            dataCopy[i].setWeight(Math.Pow(dataCopy[i].getWeight(), vote)); //on incorrect, set weight to weight^vote
+                        {
+                            double newWeight = c.getWeight() * Math.Pow(Math.E, vote);
+                            c.setWeight(newWeight); //on incorrect, set weight to weight^vote
+                        }
+
                     }
+
+                    Case.NormalizeWeights(dataCopy);
 
                     FullLearner[i] = current;
                     votes[i] = vote;
                 }
                 else
                 {
-                    throw new Exception("Something went wrong and the weak learner is worse than guessing considering the current weights.");
+                    throw new Exception("Something went terribly wrong and the weak learner is worse than guessing when considering the current weights.");
                 }
 
             }
@@ -118,7 +129,7 @@ namespace EnsembleLearning
     {
         public readonly ID3_Node[] Trees;
         public readonly bool WeightedVotes;
-        private double[] VoteWieghts;
+        private double[] VoteWeights;
 
         /// <summary>
         /// An ensemble learner with trees of uniform weight.
@@ -126,11 +137,11 @@ namespace EnsembleLearning
         public EnsembleLearner(ID3_Node[] trees)
         {
             Trees = trees;
-            VoteWieghts = new double[trees.Length];
+            VoteWeights = new double[trees.Length];
             double normalWeight = 1.0 / (double)Trees.Length;
             for(int i = 0; i < trees.Length; i++)
             {
-                VoteWieghts[i] = normalWeight; //set all weights to one over the number of items
+                VoteWeights[i] = normalWeight; //set all weights to one over the number of items
             }
             WeightedVotes = false;
         }
@@ -141,7 +152,7 @@ namespace EnsembleLearning
         public EnsembleLearner(ID3_Node[] trees, double[] weights)
         {
             Trees = trees;
-            VoteWieghts = weights;
+            VoteWeights = weights;
             WeightedVotes = true;
         }
 
@@ -157,10 +168,10 @@ namespace EnsembleLearning
         {
             double[] voting = new double[target.numVariants()];
 
-            for(int i = 0; i < VoteWieghts.Length; i++)
+            for(int i = 0; i < VoteWeights.Length; i++)
             {
                 int currentResult = ID3Tools.TestWithTree(c, Trees[i]);
-                voting[currentResult] += VoteWieghts[i]; //add the tree's voting power to the bucket for its answer
+                voting[currentResult] += VoteWeights[i]; //add the tree's voting power to the bucket for its answer
             }
 
             //find the majority vote in the voting pool
@@ -206,7 +217,7 @@ namespace EnsembleLearning
             output.Append("Here is a list of all of the contained trees and their corresponding weights.\n\n");
             double sumWeight = 0;
 
-            foreach(double weight in VoteWieghts)
+            foreach(double weight in VoteWeights)
             {
                 sumWeight += weight;
             }
@@ -217,7 +228,7 @@ namespace EnsembleLearning
             for(int i = 0; i<Trees.Length; i++)
             {
                 output.Append("---------------------------------------------------------------------------------------------------------\n\n");
-                output.Append("Weight = " + VoteWieghts[i] + "\n");
+                output.Append("Weight = " + VoteWeights[i] + "\n");
                 output.Append(Trees[i].PrintTree(attributes));
             }
         }
@@ -225,18 +236,19 @@ namespace EnsembleLearning
         /// <summary>
         /// Converts all the weights in the learner to be a relative percentage of the whole weight (which will then sum to 1).
         /// </summary>
-        public void NormalizeWieghts()
+        private void NormalizeWeights()
         {
             double sumWeight = 0;
-            foreach (double weight in VoteWieghts)
+            foreach (double weight in VoteWeights)
             {
                 sumWeight += weight;
             }
             
-            for(int i = 0; i < VoteWieghts.Length; i++)
+            for(int i = 0; i < VoteWeights.Length; i++)
             {
-                VoteWieghts[i] = VoteWieghts[i] / sumWeight; //every weight now equal to self/totalWeight (converted to percentage summing to 1)
+                VoteWeights[i] = VoteWeights[i] / sumWeight; //every weight now equal to self/totalWeight (converted to percentage summing to 1)
             }
         }
+
     }
 }

@@ -20,6 +20,7 @@ namespace EnsembleLearning
         public static bool UseBag = true;
         public static bool UseBagBias = true;
         public static bool UseRandTrees = true;
+        public static bool UseRForestBias = true;
 
         public static void Main()
         {
@@ -82,6 +83,8 @@ namespace EnsembleLearning
                 EnsembleLearner current = null; //initialize. Doesn't matter what to
                 for (int i = 1; i < NumIterations; i++)//Assignment specifies 1000 iterations
                 {
+
+
                     current = EnsembleTools.AdaBoost(i, TrainBank, attributeBank);
 
                     double TrainingError = current.TestEnsembleClassMass(TrainBank, attributeBank);
@@ -90,6 +93,7 @@ namespace EnsembleLearning
 
                     Console.WriteLine("Built an AdaBoost Learner with " + i + " Trees.");
                     output.Append(i + "," + TrainingError + "," + TestingError + "\n"); //write a new line for the CSV file
+                    TrainBank = DRT.ParseCSV(attributeBank.ToArray(), TestPath + @"\bank\train.csv", true); //reset data since I'm too lazy to copy it
                 }
 
                 StringBuilder output2 = new StringBuilder();
@@ -144,8 +148,8 @@ namespace EnsembleLearning
                 }
 
                 Console.WriteLine("Writing all results to Ensemble\\ Learning/TestingData/RunResults/ResultsBankBag.csv");
-                System.IO.File.WriteAllText(TestPath + @"/RunResults/ResultsBankBag.csv", output.ToString());
-                System.IO.File.WriteAllText(TestPath + @"/RunResults/ResultsBankBagTrees.csv", outputTree.ToString());
+                System.IO.File.WriteAllText(TestPath + @"/RunResults/ResultsBankBagTemp.csv", output.ToString());
+                System.IO.File.WriteAllText(TestPath + @"/RunResults/ResultsBankBagTreesTemp.csv", outputTree.ToString());
             }
 
             if (UseBagBias)
@@ -183,8 +187,8 @@ namespace EnsembleLearning
                         if (ID3Tools.TestWithTree(c, current.Trees[0]) != c.AttributeVals[16]) //Incorrect guess
                             Bias += 1;
                     }
-                    Bias = Bias / (double) TrainBank.Count;
-                    output.Append( Bias+",");
+                    Bias = Bias / (double)TrainBank.Count;
+                    output.Append(Bias + ",");
                     AverageTreeBias += Bias;
 
                     Bias = 0;//Ensemble
@@ -202,9 +206,9 @@ namespace EnsembleLearning
                     double Variance = 0;//tree
                     foreach (Case c in TrainBank)
                     {
-                        Variance += ID3Tools.TestWithTree(c, current.Trees[0]) - averageResult; //add target label value
+                        Variance += Math.Pow(ID3Tools.TestWithTree(c, current.Trees[0]) - averageResult, 2); //add target label value
                     }
-                    Variance = Math.Pow(Variance / (double)(TrainBank.Count), 2 );
+                    Variance = Variance / (double)(TrainBank.Count);
 
                     AverageTreeVariance += Variance;
                     output.Append(Variance + ",");
@@ -213,9 +217,9 @@ namespace EnsembleLearning
                     Variance = 0;//ensemble
                     foreach (Case c in TrainBank)
                     {
-                        Variance += current.TestEnsembleClassificaiton(c, attributeBank[16]) - averageResult; //add target label value
+                        Variance += Math.Pow(current.TestEnsembleClassificaiton(c, attributeBank[16]) - averageResult, 2); //add target label value
                     }
-                    Variance = Math.Pow(Variance / (double)(TrainBank.Count), 2);
+                    Variance = Variance / (double)(TrainBank.Count);
 
                     AverageBagVariance += Variance;
                     output.Append(Variance + "\n");
@@ -274,6 +278,92 @@ namespace EnsembleLearning
                 }
             }
 
+
+            if (UseRForestBias)
+            {
+                Random Gen = new Random(RNGseed);
+
+                double averageResult = 0;
+                foreach (Case c in TrainBank)
+                {
+                    averageResult += c.AttributeVals[16]; //add target label value
+                }
+                averageResult = averageResult / (double)TrainBank.Count;
+
+                double AverageTreeVariance = 0;
+                double AverageRForestVariance = 0;
+
+                double AverageTreeBias = 0;
+                double AverageRForestBias = 0;
+
+                StringBuilder output = new StringBuilder();
+                output.Append("TreeBias,EnsBias,TreeVar,EnsVar\n");
+
+                for (int i = 1; i < 101; i++)
+                {
+
+
+                    List<Case> Sample = EnsembleTools.GetRandomSubset(true, 1000, Gen, TrainBank); //Generate samples without replacement
+                    EnsembleLearner current = EnsembleTools.RandomForest(1000, 1000, true, RNGseed, 4, Sample, attributeBank);//Generate samples allowing duplicates
+                    //Calculate bias first
+
+                    double Bias = 0;//tree
+                    foreach (Case c in TrainBank)
+                    {
+                        // (1 - prediction) ^ 2
+                        if (ID3Tools.TestWithTree(c, current.Trees[0]) != c.AttributeVals[16]) //Incorrect guess
+                            Bias += 1;
+                    }
+                    Bias = Bias / (double)TrainBank.Count;
+                    output.Append(Bias + ",");
+                    AverageTreeBias += Bias;
+
+                    Bias = 0;//Ensemble
+                    foreach (Case c in TrainBank)
+                    {
+                        // (1 - prediction) ^ 2
+                        if (current.TestEnsembleClassificaiton(c, attributeBank[16]) != c.AttributeVals[16]) //Incorrect guess
+                            Bias += 1;
+                    }
+                    Bias = Bias / (double)TrainBank.Count;
+                    AverageRForestBias += Bias;
+                    output.Append(Bias + ",");
+
+                    //now variance
+                    double Variance = 0;//tree
+                    foreach (Case c in TrainBank)
+                    {
+                        Variance += Math.Pow(ID3Tools.TestWithTree(c, current.Trees[0]) - averageResult, 2); //add target label value
+                    }
+                    Variance = Variance / (double)(TrainBank.Count);
+
+                    AverageTreeVariance += Variance;
+                    output.Append(Variance + ",");
+
+
+                    Variance = 0;//ensemble
+                    foreach (Case c in TrainBank)
+                    {
+                        Variance += Math.Pow(current.TestEnsembleClassificaiton(c, attributeBank[16]) - averageResult,2); //add target label value
+                    }
+                    Variance = Variance / (double)(TrainBank.Count);
+
+                    AverageRForestVariance += Variance;
+                    output.Append(Variance + "\n");
+
+                    Console.WriteLine("Completed Bias and Variance calculations for RForest Learner number " + i);
+                }
+
+                AverageTreeVariance = AverageTreeVariance / 100;
+                AverageTreeBias = AverageTreeBias / 100;
+                AverageRForestVariance = AverageRForestVariance / 100;
+                AverageRForestBias = AverageRForestBias / 100;
+
+                output.Append("FinalVals\n" + AverageTreeBias + "," + AverageRForestBias + "," + AverageTreeVariance + "," + AverageRForestVariance);
+                Console.WriteLine();
+                System.IO.File.WriteAllText(TestPath + @"/RunResults/ResultsBankRForest4Analysis.csv", output.ToString());
+
+            }
         }
 
     }

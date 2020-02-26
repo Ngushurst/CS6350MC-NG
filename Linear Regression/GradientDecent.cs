@@ -14,9 +14,10 @@ namespace Linear_Regression
     public class GradientDecent
     {
         double[] Weight; //That's all a gradient decent learner really is.
-        double LearningRate = 1;
+        double LearningRate = 1; //should be 1 by default
+        double LearningRateDecrease = 1.05; // learningRate = learningRate/LearningRateDecrease. 1.05 seems to be the best for Batch. 1.005 appears to be "good" for Stochastic
         double PreviousError = double.PositiveInfinity;
-        int StochasticIndex = 0; //index of the next item to use from the data for stochastic gradient decent
+        Random StochasticIndex = new Random(777); //using a random number generator to get the stochastic items
         List<Reach> TrainingData;
 
 
@@ -45,6 +46,21 @@ namespace Linear_Regression
             TrainingData = Train.ToList();
         }
 
+        public GradientDecent(List<Reach> Train, double[] Learn)
+        {
+            Weight = new double[Train[0].attributeVals.Length];
+            for (int i = 0; i < Train[0].attributeVals.Length; i++) //initialize all doubles to zero
+            {
+                Weight[i] = 0.0;
+            }
+
+            LearningRate = Learn[0];
+
+            LearningRateDecrease = Learn[1];
+
+            TrainingData = Train.ToList();
+        }
+
 
         /// <summary>
         /// Updates the weight vector
@@ -68,7 +84,7 @@ namespace Linear_Regression
         public double Stochastic()
         {
             List<Reach> nextItem = new List<Reach>(1);
-            nextItem.Add(TrainingData[StochasticIndex]); //put in the next item
+            nextItem.Add(TrainingData[StochasticIndex.Next(TrainingData.Count)]); //put in the next item
 
             double[] newWeight = GD(Weight, nextItem, LearningRate);
 
@@ -77,7 +93,16 @@ namespace Linear_Regression
             Weight = newWeight;
 
             upDateLR();
-
+            /*
+            if(StochasticIndex == TrainingData.Count - 1)
+            {
+                StochasticIndex = 0;
+            }
+            else
+            {
+                StochasticIndex++;
+            }
+            */
             return output;
         }
 
@@ -119,16 +144,24 @@ namespace Linear_Regression
             foreach(Reach item in data)
             {
                 double error = CalculateError(item, weight);
-
+                if (error != 0)
+                {
+                    error = error / Math.Abs(error); //error is either 1 or -1
+                }
                 for(int i = 0; i < weight.Length; i++)
                 {
                     newWeight[i] += error * item.attributeVals[i]; //sum of error times value of each piece of data
                 }
             }
+            
+            for (int i = 0; i < weight.Length; i++)
+            {
+                newWeight[i] = newWeight[i]/ data.Count; //average all weights
+            }
 
-            for(int i = 0; i < weight.Length; i++)
-            { //negate sum, multiply by learning rate and original wieght, and then subtract from original weight to get new weight.
-                newWeight[i] = weight[i] - LearningRate * -newWeight[i];
+            for (int i = 0; i < weight.Length; i++)
+            { //negate sum, multiply by learning rate and original wieght, and then subtract from original weight to get new weight.'
+                newWeight[i] = weight[i] - (LearningRate * (-newWeight[i]));
             }
 
             return newWeight;
@@ -153,10 +186,10 @@ namespace Linear_Regression
         /// </summary>
         private void upDateLR()
         {
-            double error = CalculateAverageError(TrainingData); //get new training error
+            double error = Math.Abs(CalculateAverageError(TrainingData)); //get new training error
             if (!(error < PreviousError)) //passed mid-point. Cut learning rate in half.
             {
-                LearningRate = LearningRate/2;
+                LearningRate = LearningRate/LearningRateDecrease; //smaller decrements in learning rate seem to improve accuracy
             }
 
             PreviousError = error;

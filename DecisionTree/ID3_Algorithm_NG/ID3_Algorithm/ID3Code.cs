@@ -248,16 +248,20 @@ namespace ID3_Algorithm
         public static double FindTestError(List<Case> TestCases, List<DAttribute> attributes, ID3_Node Tree)
         {
             double RightAnswers = 0;
+            double sumWeight = 0;
 
-            foreach(Case C in TestCases)
+            foreach (Case C in TestCases)
             {
                 if(C.AttributeVals.Last() == TestWithTree(C, Tree))
                 {
                     RightAnswers += C.getWeight(); //add the case's weight (usually one)
                 }
+
+                sumWeight += C.getWeight();
             }
 
-           return 1.0 - (RightAnswers/(double) TestCases.Count);
+
+           return 1.0 - (RightAnswers/sumWeight);
         }
 
 
@@ -344,6 +348,7 @@ namespace ID3_Algorithm
         {
             int numVars = attribute.numVariants();
             double[] output = new double[numVars];
+            double sumWeight = 0;
 
             foreach (Case c in Data)
             {
@@ -353,11 +358,12 @@ namespace ID3_Algorithm
                     continue; //value is undefined. proceed to the next value
                 }
                 output[AVal]+= c.getWeight(); //increment the corresponding attribute variant by the case's weight (summing number of hits for each)
+                sumWeight += c.getWeight();
             }
 
             for (int i = 0; i<numVars; i++) //divide each by count to get the relative proportion of the label as oppsed to the count.
             {
-                output[i] = output[i] / Data.Count;
+                output[i] = output[i] / sumWeight;
             }
 
             return output;
