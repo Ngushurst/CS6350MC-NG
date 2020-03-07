@@ -40,7 +40,7 @@ namespace General_Tools
                 //look for numeric attributes and find the medians for them.
                 foreach (DAttribute att in Attributes)
                 {
-                    if (att.IsNumeric())
+                    if (att.AttType == DAttribute.Type.BinaryNumeric)
                     {
                         List<int> NumValues = new List<int>(input.Length);
                         foreach (String[] vals in rawCases)
@@ -57,7 +57,7 @@ namespace General_Tools
             for (int i = 0; i < rawCases.Length; i++)
             {
                 String[] current = rawCases[i];
-                int[] caseVars = new int[current.Length]; //array to hold all the relevant values in the case
+                double[] caseVars = new double[current.Length]; //array to hold all the relevant values in the case
 
 
                 if (current.Length == 0)
@@ -67,7 +67,7 @@ namespace General_Tools
 
                 for (int j = 0; j < current.Length; j++)
                 {
-                    int varID = Attributes[j].GetVarID(current[j]);
+                    double varID = Attributes[j].GetVarID(current[j]);
                     if (varID == -1) //unrecognized attribute value. Assumed to be unknown and will be replaced by a fractional count
                     {
                         unidentifiedID.Add(i); //toss a reference to it onto this stack. Will add multiple copies of the same number for multiple missing values
@@ -139,7 +139,7 @@ namespace General_Tools
                 {
                     for (int i = 0; i < Weights.Length; i++) //there is one weight for each attribute variant
                     {
-                        int[] newVals = new int[Attributes.Length]; //create a replacement array
+                        double[] newVals = new double[Attributes.Length]; //create a replacement array
                         for (int j = 0; j < Attributes.Length; j++)
                         {
                             if (j == a) //if the item is known to be unkown, fill it in with the current variant (i)
@@ -221,7 +221,7 @@ namespace General_Tools
                 // and then uses that copied array of attributes to make a new Case with a weight notated by the position of i in weights.
                 foreach (int Fc in CasesToFill)
                 {
-                    int[] newVals = new int[Attributes.Length]; //create a replacement array
+                    double[] newVals = new double[Attributes.Length]; //create a replacement array
                     for (int j = 0; j < Attributes.Length; j++)
                     {
                         if (j == a) //if the item is known to be unkown, fill it in with the most common item overall.
@@ -273,11 +273,11 @@ namespace General_Tools
             { //create attributes and intialize their lists of variants. Populate attributes
                 if (i < example.Length - 1)
                 {
-                    attributes.Add(new DAttribute("Var" + i, i, new List<String>(), false, false));
+                    attributes.Add(new DAttribute("Var" + i, i, new List<String>(), DAttribute.Type.Categorical, false));
                 }
                 else
                 {//last attribute assumed by default to be final
-                    attributes.Add(new DAttribute("Var" + i, i, new List<String>(), false, true));
+                    attributes.Add(new DAttribute("Var" + i, i, new List<String>(), DAttribute.Type.Categorical, true));
                 }
 
             }
@@ -285,7 +285,7 @@ namespace General_Tools
             for (int i = 0; i < rawCases.Length; i++)
             {
                 String[] current = rawCases[i].Split(',');
-                int[] caseVars = new int[current.Length]; //array to hold all the relevant values in the case
+                double[] caseVars = new double[current.Length]; //array to hold all the relevant values in the case
 
 
                 if (current.Length == 0)
@@ -308,17 +308,23 @@ namespace General_Tools
 
         /// <summary>
         /// Calculates the Final label (output, found in data as #attributeNum) purity for each variant of a dataset and returns it.
+        /// Doesn't work on pure numeric attributes.
         /// </summary>
         /// <param name="Data"></param>
         /// <returns></returns>
         private static double[] GetLabelDistribution(List<Case> Data, DAttribute attribute)
         {
+            if(attribute.AttType == DAttribute.Type.Numeric)
+            {
+                throw new Exception("Failure in DRT.GetLabelDistribution() - Cannot get the label distribution of a purely numeric attribute.");
+            }
+
             int numVars = attribute.numVariants();
             double[] output = new double[numVars];
 
             foreach (Case c in Data)
             {
-                int AVal = c.AttributeVals[attribute.ID]; // the varID of the attribute value held by C
+                int AVal = (int) c.AttributeVals[attribute.ID]; // the varID of the attribute value held by C. Treat it as an integer.
                 if (AVal <= -1)
                 {
                     continue; //value is undefined. proceed to the next value

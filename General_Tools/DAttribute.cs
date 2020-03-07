@@ -155,7 +155,7 @@ namespace General_Tools
         }
 
         /// <summary>
-        /// An enum referring to the type of attribute, seperating numeric attributes from categorical ones, so one and so forth.
+        /// An enum referring to the type of attribute, seperating numeric attributes from categorical ones, so on and so forth.
         /// </summary>
         public enum Type
         {
