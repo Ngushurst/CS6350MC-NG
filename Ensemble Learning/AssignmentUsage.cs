@@ -31,40 +31,40 @@ namespace EnsembleLearning
             string[] AVariants;
 
             //age being numeric means that the actual variants will be figured out at run time. The variant will be overwritten when we pull in the testing data.
-            attributeBank.Add(new DAttribute("age", 0, null, true, false));
+            attributeBank.Add(new DAttribute("age", 0, null, DAttribute.Type.BinaryNumeric, false));
             AVariants = new string[] {"admin.","unknown","unemployed","management","housemaid","entrepreneur","student",
                                        "blue-collar","self-employed","retired","technician","services" };
-            attributeBank.Add(new DAttribute("job", 1, new List<string>(AVariants), false, false));
+            attributeBank.Add(new DAttribute("job", 1, new List<string>(AVariants), DAttribute.Type.Categorical, false));
             AVariants = new string[] { "married", "divorced", "single" };
-            attributeBank.Add(new DAttribute("marital", 2, new List<string>(AVariants), false, false));
+            attributeBank.Add(new DAttribute("marital", 2, new List<string>(AVariants), DAttribute.Type.Categorical, false));
             AVariants = new string[] { "unknown", "secondary", "primary", "tertiary" };
-            attributeBank.Add(new DAttribute("education", 3, new List<string>(AVariants), false, false));
+            attributeBank.Add(new DAttribute("education", 3, new List<string>(AVariants), DAttribute.Type.Categorical, false));
             AVariants = new string[] { "yes", "no" };
-            attributeBank.Add(new DAttribute("default", 4, new List<string>(AVariants), false, false));
+            attributeBank.Add(new DAttribute("default", 4, new List<string>(AVariants), DAttribute.Type.Categorical, false));
 
-            attributeBank.Add(new DAttribute("balance", 5, null, true, false));
+            attributeBank.Add(new DAttribute("balance", 5, null, DAttribute.Type.BinaryNumeric, false));
             AVariants = new string[] { "yes", "no" };
-            attributeBank.Add(new DAttribute("housing", 6, new List<string>(AVariants), false, false));
+            attributeBank.Add(new DAttribute("housing", 6, new List<string>(AVariants), DAttribute.Type.Categorical, false));
             AVariants = new string[] { "yes", "no" };
-            attributeBank.Add(new DAttribute("loan", 7, new List<string>(AVariants), false, false));
+            attributeBank.Add(new DAttribute("loan", 7, new List<string>(AVariants), DAttribute.Type.Categorical, false));
             AVariants = new string[] { "unknown", "telephone", "cellular" };
-            attributeBank.Add(new DAttribute("contact", 8, new List<string>(AVariants), false, false));
+            attributeBank.Add(new DAttribute("contact", 8, new List<string>(AVariants), DAttribute.Type.Categorical, false));
 
-            attributeBank.Add(new DAttribute("day", 9, null, true, false));
+            attributeBank.Add(new DAttribute("day", 9, null, DAttribute.Type.BinaryNumeric, false));
             AVariants = new string[] { "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" };
-            attributeBank.Add(new DAttribute("month", 10, new List<string>(AVariants), false, false));
+            attributeBank.Add(new DAttribute("month", 10, new List<string>(AVariants), DAttribute.Type.Categorical, false));
 
-            attributeBank.Add(new DAttribute("duration", 11, null, true, false));
+            attributeBank.Add(new DAttribute("duration", 11, null, DAttribute.Type.BinaryNumeric, false));
 
-            attributeBank.Add(new DAttribute("campaign", 12, null, true, false));
+            attributeBank.Add(new DAttribute("campaign", 12, null, DAttribute.Type.BinaryNumeric, false));
 
-            attributeBank.Add(new DAttribute("pdays", 13, null, true, false));
+            attributeBank.Add(new DAttribute("pdays", 13, null, DAttribute.Type.BinaryNumeric, false));
 
-            attributeBank.Add(new DAttribute("previous", 14, null, true, false));
+            attributeBank.Add(new DAttribute("previous", 14, null, DAttribute.Type.BinaryNumeric, false));
             AVariants = new string[] { "unknown", "other", "failure", "success" }; //If unknown needs to be filled in, remove it from this list.
-            attributeBank.Add(new DAttribute("poutcome", 15, new List<string>(AVariants), false, false));
+            attributeBank.Add(new DAttribute("poutcome", 15, new List<string>(AVariants), DAttribute.Type.Categorical, false));
             AVariants = new string[] { "yes", "no" };
-            attributeBank.Add(new DAttribute("result", 16, new List<string>(AVariants), false, true));
+            attributeBank.Add(new DAttribute("result", 16, new List<string>(AVariants), DAttribute.Type.Categorical, true));
 
 
 

@@ -30,19 +30,19 @@ namespace ID3_Algorithm
                 string[] AVariants = new string[] { "vhigh", "high", "med", "low" }; //array of attribute variants to pass in to an attribute
 
 
-                attributeCars.Add(new DAttribute("buying", 0, new List<string>(AVariants), false, false));
-                attributeCars.Add(new DAttribute("maint", 1, new List<string>(AVariants), false, false));
+                attributeCars.Add(new DAttribute("buying", 0, new List<string>(AVariants), DAttribute.Type.Categorical, false));
+                attributeCars.Add(new DAttribute("maint", 1, new List<string>(AVariants), DAttribute.Type.Categorical, false));
 
                 AVariants = new string[] { "2", "3", "4", "5more" };
-                attributeCars.Add(new DAttribute("doors", 2, new List<string>(AVariants), false, false));
+                attributeCars.Add(new DAttribute("doors", 2, new List<string>(AVariants), DAttribute.Type.Categorical, false));
                 AVariants = new string[] { "2", "4", "more" };
-                attributeCars.Add(new DAttribute("persons", 3, new List<string>(AVariants), false, false));
+                attributeCars.Add(new DAttribute("persons", 3, new List<string>(AVariants), DAttribute.Type.Categorical, false));
                 AVariants = new string[] { "small", "med", "big" };
-                attributeCars.Add(new DAttribute("lug_boot", 4, new List<string>(AVariants), false, false));
+                attributeCars.Add(new DAttribute("lug_boot", 4, new List<string>(AVariants), DAttribute.Type.Categorical, false));
                 AVariants = new string[] { "low", "med", "high" };
-                attributeCars.Add(new DAttribute("safety", 5, new List<string>(AVariants), false, false));
+                attributeCars.Add(new DAttribute("safety", 5, new List<string>(AVariants), DAttribute.Type.Categorical, false));
                 AVariants = new string[] { "unacc", "acc", "good", "vgood" };
-                attributeCars.Add(new DAttribute("label", 6, new List<string>(AVariants), false, true));
+                attributeCars.Add(new DAttribute("label", 6, new List<string>(AVariants), DAttribute.Type.Categorical, true));
 
                 
                 List<Case> TrainCars = DRT.ParseCSV(attributeCars.ToArray(), TestPath + @"\car\train.csv");
@@ -101,40 +101,40 @@ namespace ID3_Algorithm
                 string[] AVariants;
 
                 //age being numeric means that the actual variants will be figured out at run time. The variant will be overwritten when we pull in the testing data.
-                attributeBank.Add(new DAttribute("age", 0, null, true, false));
+                attributeBank.Add(new DAttribute("age", 0, null, DAttribute.Type.BinaryNumeric, false));
                 AVariants = new string[] {"admin.","unknown","unemployed","management","housemaid","entrepreneur","student",
                                        "blue-collar","self-employed","retired","technician","services" };
-                attributeBank.Add(new DAttribute("job", 1, new List<string>(AVariants), false, false));
+                attributeBank.Add(new DAttribute("job", 1, new List<string>(AVariants), DAttribute.Type.Categorical, false));
                 AVariants = new string[] { "married", "divorced", "single" };
-                attributeBank.Add(new DAttribute("marital", 2, new List<string>(AVariants), false, false));
+                attributeBank.Add(new DAttribute("marital", 2, new List<string>(AVariants), DAttribute.Type.Categorical, false));
                 AVariants = new string[] { "unknown", "secondary", "primary", "tertiary" };
-                attributeBank.Add(new DAttribute("education", 3, new List<string>(AVariants), false, false));
+                attributeBank.Add(new DAttribute("education", 3, new List<string>(AVariants), DAttribute.Type.Categorical, false));
                 AVariants = new string[] { "yes", "no" };
-                attributeBank.Add(new DAttribute("default", 4, new List<string>(AVariants), false, false));
+                attributeBank.Add(new DAttribute("default", 4, new List<string>(AVariants), DAttribute.Type.Categorical, false));
 
-                attributeBank.Add(new DAttribute("balance", 5, null, true, false));
+                attributeBank.Add(new DAttribute("balance", 5, null, DAttribute.Type.BinaryNumeric, false));
                 AVariants = new string[] { "yes", "no" };
-                attributeBank.Add(new DAttribute("housing", 6, new List<string>(AVariants), false, false));
+                attributeBank.Add(new DAttribute("housing", 6, new List<string>(AVariants), DAttribute.Type.Categorical, false));
                 AVariants = new string[] { "yes", "no" };
-                attributeBank.Add(new DAttribute("loan", 7, new List<string>(AVariants), false, false));
+                attributeBank.Add(new DAttribute("loan", 7, new List<string>(AVariants), DAttribute.Type.Categorical, false));
                 AVariants = new string[] { "unknown", "telephone", "cellular" };
-                attributeBank.Add(new DAttribute("contact", 8, new List<string>(AVariants), false, false));
+                attributeBank.Add(new DAttribute("contact", 8, new List<string>(AVariants), DAttribute.Type.Categorical, false));
 
-                attributeBank.Add(new DAttribute("day", 9, null, true, false));
+                attributeBank.Add(new DAttribute("day", 9, null, DAttribute.Type.BinaryNumeric, false));
                 AVariants = new string[] { "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" };
-                attributeBank.Add(new DAttribute("month", 10, new List<string>(AVariants), false, false));
+                attributeBank.Add(new DAttribute("month", 10, new List<string>(AVariants), DAttribute.Type.Categorical, false));
 
-                attributeBank.Add(new DAttribute("duration", 11, null, true, false));
+                attributeBank.Add(new DAttribute("duration", 11, null, DAttribute.Type.BinaryNumeric, false));
 
-                attributeBank.Add(new DAttribute("campaign", 12, null, true, false));
-                
-                attributeBank.Add(new DAttribute("pdays", 13, null, true, false));
+                attributeBank.Add(new DAttribute("campaign", 12, null, DAttribute.Type.BinaryNumeric, false));
 
-                attributeBank.Add(new DAttribute("previous", 14, null, true, false));
+                attributeBank.Add(new DAttribute("pdays", 13, null, DAttribute.Type.BinaryNumeric, false));
+
+                attributeBank.Add(new DAttribute("previous", 14, null, DAttribute.Type.BinaryNumeric, false));
                 AVariants = new string[] { "unknown", "other", "failure", "success" }; //If unknown needs to be filled in, remove it from this list.
-                attributeBank.Add(new DAttribute("poutcome", 15, new List<string>(AVariants), false, false));
+                attributeBank.Add(new DAttribute("poutcome", 15, new List<string>(AVariants), DAttribute.Type.Categorical, false));
                 AVariants = new string[] { "yes", "no" };
-                attributeBank.Add(new DAttribute("result", 16, new List<string>(AVariants), false, true));
+                attributeBank.Add(new DAttribute("result", 16, new List<string>(AVariants), DAttribute.Type.Categorical, true));
 
                 if (BuildBankTreeNormal)
                 {
@@ -185,7 +185,7 @@ namespace ID3_Algorithm
                 if (BuildBankMissingVals)
                 {
                     //In this case, the "unknown" values in poutcome
-                    attributeBank[15] = new DAttribute("poutcome", 15, new List<string>(new string[] { "unknown", "other", "failure", "success" }), false, false);
+                    attributeBank[15] = new DAttribute("poutcome", 15, new List<string>(new string[] { "unknown", "other", "failure", "success" }), DAttribute.Type.Categorical, false);
 
                     //Now we rebuild all the datasets, which will have elements filled in by the majority elements.
                     List<Case> TrainBank = DRT.ParseCSV(attributeBank.ToArray(), TestPath + @"\bank\train.csv", true);

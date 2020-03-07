@@ -14,8 +14,8 @@ namespace Linear_Regression
 
         public static void Main()
         {
-            List<Reach> ConcreteTrain = readConcreteCSV(TestPath + @"/Concrete/slump_train.csv"); //53 items
-            List<Reach> ConcreteTest = readConcreteCSV(TestPath + @"/Concrete/slump_test.csv"); //50 items
+            List<Reach> ConcreteTrain = readActualConcreteCSV(TestPath + @"/ActualConcrete/train.csv"); //53 items
+            List<Reach> ConcreteTest = readActualConcreteCSV(TestPath + @"/ActualConcrete/test.csv"); //50 items
 
             //Batch Gradient Decent
             if (true)
@@ -143,6 +143,39 @@ namespace Linear_Regression
                 }
 
                 output.Add(new Reach(attVals, Double.Parse(rawCases[i][8])));
+            }
+
+            return output;
+        }
+
+        private static List<Reach> readActualConcreteCSV(String Filepath)
+        {
+            //read all lines of the CSV file
+            String[] input = System.IO.File.ReadAllLines(Filepath);
+            if (input.Length == 0)
+            {
+                throw new MissingFieldException("File must have at least one data point");
+            }
+
+            String[][] rawCases = new String[input.Length][];
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                rawCases[i] = input[i].Split(','); //split all the strings and store them in raw cases
+            }
+
+            List<Reach> output = new List<Reach>();
+
+            for (int i = 0; i < rawCases.Length; i++)
+            {
+                double[] attVals = new double[7];
+
+                for (int j = 0; j < 7; j++)
+                {
+                    attVals[j] = Double.Parse(rawCases[i][j]);
+                }
+
+                output.Add(new Reach(attVals, Double.Parse(rawCases[i][7])));
             }
 
             return output;

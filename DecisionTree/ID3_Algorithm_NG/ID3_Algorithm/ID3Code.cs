@@ -136,8 +136,14 @@ namespace ID3_Algorithm
                         }
 
                         foreach (Case c in data)// populate lists by dividing by attribute value
-                        {
-                            CurrentSets[c.AttributeVals[aID]].Add(c); //add the case to a list pertaining to its attribute value
+                        { //Tree not compatible with pure numeric attributes. Assume that it is not pure numeric
+                            if (attributes[a].AttType == DAttribute.Type.Categorical || attributes[a].AttType == DAttribute.Type.BinaryNumeric)
+                                CurrentSets[(int)c.AttributeVals[aID]].Add(c); //Add the case to a list pertaining to its attribute value.
+                                                                               //We can safely assume that there is an attribute variant for the integer represented by the value.
+                            else if (attributes[a].AttType == DAttribute.Type.Numeric)
+                            {
+                                throw new Exception("ID3 algorithm cannot build a tree with a purely numeric input");
+                            }
                         }
 
                         //now that the data is split, calculate each set's entropy, weight it, and recombine it all
@@ -279,7 +285,8 @@ namespace ID3_Algorithm
                 if(Tree.getChildren().Length == test.AttributeVals[Tree.AttributeID])
             }*/
             
-            return TestWithTree(test, Tree.getChildren()[test.AttributeVals[Tree.AttributeID]]);
+            // we have to assume that the attribute values are integers and that the attributes are not purely numeric
+            return TestWithTree(test, Tree.getChildren()[ (int) test.AttributeVals[Tree.AttributeID]]);
         }
 
         //Here are the three variations on the entropy calculations
@@ -352,7 +359,7 @@ namespace ID3_Algorithm
 
             foreach (Case c in Data)
             {
-                int AVal = c.AttributeVals[attribute.ID]; // the varID of the attribute value held by C
+                int AVal = (int) c.AttributeVals[attribute.ID]; // the varID of the attribute value held by C
                 if (AVal <= -1)
                 {
                     continue; //value is undefined. proceed to the next value

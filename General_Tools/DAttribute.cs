@@ -14,7 +14,7 @@ namespace General_Tools
         public readonly String Name;
         public readonly int ID; //ID refers to the position in the order of the data's representation
         private List<String> Variants;
-        private bool Numeric;
+        public readonly Type AttType; 
         private int median; //for numeric attributes only. Variants are greater than or equal, or less than the median.
         private bool Final; // If true, this attribute represents a result as opposed to a distinguishing feature.
 
@@ -27,12 +27,12 @@ namespace General_Tools
         /// <param name="variants"></param>
         /// <param name="numeric"></param>
         /// <param name="final"></param>
-        public DAttribute(String name, int id, List<String> variants, bool numeric, bool final)
+        public DAttribute(String name, int id, List<String> variants, Type type, bool final)
         {
             Name = name;
             ID = id;
             Variants = variants;
-            Numeric = numeric;
+            AttType = type;
             Final = final;
         }
 
@@ -47,21 +47,21 @@ namespace General_Tools
         }
 
         /// <summary>
-        /// If true, this attribute represents two ranges of numbers (has two )
+        /// If true, this attribute is a binary numeric one and represents two ranges of numbers (has two )
         /// </summary>
         /// <returns></returns>
-        public bool IsNumeric()
+        public bool IsBNumeric()
         {
-            return Numeric;
+            return AttType == Type.BinaryNumeric;
         }
 
         /// <summary>
-        /// Mostly for use regarding a numeric attribute, since it needs to be set after looking over all the data.
+        /// Use to define values for a binary numeric attribute, since it needs to be set after looking over all the data.
         /// </summary>
         /// <param name="newVars"></param>
         public void setNumericVariants(int median)
         {
-            if (Numeric)
+            if (AttType == Type.BinaryNumeric)
             {
                 this.median = median;
                 List<String> newVars = new List<string>(2);
@@ -120,32 +120,48 @@ namespace General_Tools
         /// Given a string representing an attribute variant, returns a number corresponding to the variant. It makes storage a little less repetetive
         /// since it lets us store all the variant types as strings in the attributes without repeating them in the individual cases. Loses a little information
         /// when dealing with numerical ranges, though it will still record the relevant range of the number.
+        /// In the final case of a purely numeric attribute, returns the the number input to the function.
         /// </summary>
         /// <param name="variant"></param>
         /// <returns></returns>
-        public int GetVarID(String variant)
+        public double GetVarID(String variant)
         {
-            if (this.Numeric) //a binary numeric attribute that is either below, or above/equal to the median.
+            switch (AttType)
             {
-                if (int.Parse(variant) < median)
-                { //first option
-                    return 0;
-                }
-                else
-                {//greater than or equal
-                    return 1;
-                }
+                case Type.Categorical:
+                    for (int i = 0; i < Variants.Count; i++) //a categorical attribute
+                    {
+                        if (variant.Equals(Variants[i]))
+                        { //found a match
+                            return i; //return the list index
+                        }
+                    }
+                    break;
+                case Type.BinaryNumeric:
+                    if (int.Parse(variant) < median)
+                    { //first option
+                        return 0;
+                    }
+                    else
+                    {//greater than or equal
+                        return 1;
+                    }
+                case Type.Numeric:
+                    return double.Parse(variant);
+                    //throw new NotImplementedException("Pure numeric attributes do not have variable ID's");
             }
 
-            for (int i = 0; i < Variants.Count; i++) //a categorical attribute
-            {
-                if (variant.Equals(Variants[i]))
-                { //found a match
-                    return i; //return the list index
-                }
-            }
-            //input variant not found
-            return -1;
+            return -1; //something went horribly wrong
+        }
+
+        /// <summary>
+        /// An enum referring to the type of attribute, seperating numeric attributes from categorical ones, so one and so forth.
+        /// </summary>
+        public enum Type
+        {
+            BinaryNumeric,
+            Categorical,
+            Numeric
         }
     }
 
