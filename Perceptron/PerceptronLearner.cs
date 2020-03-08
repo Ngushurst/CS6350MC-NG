@@ -319,6 +319,45 @@ namespace Perceptron
             RandomSeed = new Random(RandomSeed).Next(); //uses the seed to get the next seed.
         }
 
+        public double[] getWeight()
+        {
+
+            switch (Type)
+            {
+                case PType.Normal:
+                    return weight;
+                case PType.Margin:
+                    return weight;
+                case PType.Voted:
+                    return weight;
+                case PType.Averaged:
+                    double[] tempWeight = new double[weight.Length];
+                    for (int i = 0; i < weight.Length; i++)
+                    {
+                        tempWeight[i] = averagedWeight[i] / (double)numWeights;
+                    }
+                    return tempWeight;
+            }
+            return null;
+        }
+
+        public double getBias()
+        {
+            switch (Type)
+            {
+                case PType.Normal:
+                    return bias;
+                case PType.Margin:
+                    return bias;
+                case PType.Voted:
+                    return bias;
+                case PType.Averaged:
+                    return bias/(double)numWeights;
+            }
+
+            return double.NaN;
+        }
+
         /// <summary>
         /// Gets the error of a dataset.
         /// </summary>

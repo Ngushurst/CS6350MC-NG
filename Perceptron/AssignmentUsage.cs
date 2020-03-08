@@ -35,7 +35,7 @@ namespace Perceptron
             PerceptronLearner NormalPerceptron = new PerceptronLearner(10, TrainBank, 1, 1500, PerceptronLearner.PType.Normal);
             output.Append("NormalPerceptron \nTrain,Test\n");
 
-            for (int i = 1; i < 11; i++)
+            for (int i = 1; i < 12; i++)
             {
                 NormalPerceptron.SingleEpoch(); //do an epoch then test it
                 double trainError = NormalPerceptron.GetError(TrainBank);
@@ -46,9 +46,17 @@ namespace Perceptron
                 output.Append(trainError + "," + testError + "\n");
             }
 
+            Console.Write("Final Weight =  {");
+            foreach(double d in NormalPerceptron.getWeight())
+            {
+                Console.Write(d + ", ");
+            }
+
+            Console.Write("} with a bias of " + NormalPerceptron.getBias() + ". \n");
+
             PerceptronLearner VotedPerceptron = new PerceptronLearner(10, TrainBank, 1, 1500, PerceptronLearner.PType.Voted);
             output.Append("\nVotedPerceptron \nTrain,Test\n");
-            for (int i = 1; i < 11; i++)
+            for (int i = 1; i < 12; i++)
             {
                 VotedPerceptron.SingleEpoch();
                 double trainError = VotedPerceptron.GetError(TrainBank);
@@ -58,11 +66,17 @@ namespace Perceptron
                 output.Append(trainError + "," + testError + "\n");
             }
 
+            Console.Write("Final Weight =  {");
+            foreach (double d in VotedPerceptron.getWeight())
+            {
+                Console.Write(d + ", ");
+            }
 
+            Console.Write("} with a bias of " + VotedPerceptron.getBias() + ". \n");
 
             PerceptronLearner AveragedPerceptron = new PerceptronLearner(10, TrainBank, 1, 1500, PerceptronLearner.PType.Averaged);
             output.Append("\nAveragedPerceptron \nTrain,Test\n");
-            for (int i = 1; i < 11; i++)
+            for (int i = 1; i < 12; i++)
             {
                 AveragedPerceptron.SingleEpoch();
                 double trainError = AveragedPerceptron.GetError(TrainBank);
@@ -73,11 +87,17 @@ namespace Perceptron
                 output.Append(trainError + "," + testError + "\n");
             }
 
+            Console.Write("Final Weight =  {");
+            foreach (double d  in AveragedPerceptron.getWeight())
+            {
+                Console.Write(d + ", ");
+            }
 
+            Console.Write("} with a bias of " + AveragedPerceptron.getBias() + ". \n");
 
             PerceptronLearner MarginPerceptron = new PerceptronLearner(10, TrainBank, 1, 1500, PerceptronLearner.PType.Margin, 6);
             output.Append("\nMarginPerceptron \nTrain,Test\n");
-            for (int i = 1; i < 11; i++)
+            for (int i = 1; i < 12; i++)
             {
                 MarginPerceptron.SingleEpoch();
                 double trainError = MarginPerceptron.GetError(TrainBank);
@@ -86,6 +106,14 @@ namespace Perceptron
                 Console.WriteLine("Testing error Margin Epoch# " + i + " = " + testError);
                 output.Append(trainError + "," + testError + "\n");
             }
+
+            Console.Write("Final Weight =  {");
+            foreach (double d in NormalPerceptron.getWeight())
+            {
+                Console.Write(d + ", ");
+            }
+
+            Console.Write("} with a bias of " + NormalPerceptron.getBias() + ". \n");
 
             Console.WriteLine("\n\n\n\n\n\n Writing all results to TestingData/RunResults/Perceptron.csv");
             System.IO.File.WriteAllText(TestPath + @"/RunResults/Perceptron.csv", output.ToString());
