@@ -122,8 +122,6 @@ namespace Perceptron
         {
             for (; Epoch < MaxEpoch;)
             {
-                ShuffleData(); //shuffle the data before accessing
-                //access each item of the data "in order" (it's shuffled) and update the weight on an error
                  SingleEpoch();
 
             }
