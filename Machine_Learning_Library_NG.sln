@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ensemble Learning", "Ensemb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linear Regression", "Linear Regression\Linear Regression.csproj", "{D351D852-44B9-4D4E-BC6F-1A0FE7EC476A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perceptron", "Perceptron\Perceptron.csproj", "{22EF849F-1679-424E-9B3E-3E55BCAC9694}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D351D852-44B9-4D4E-BC6F-1A0FE7EC476A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D351D852-44B9-4D4E-BC6F-1A0FE7EC476A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D351D852-44B9-4D4E-BC6F-1A0FE7EC476A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22EF849F-1679-424E-9B3E-3E55BCAC9694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22EF849F-1679-424E-9B3E-3E55BCAC9694}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22EF849F-1679-424E-9B3E-3E55BCAC9694}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22EF849F-1679-424E-9B3E-3E55BCAC9694}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

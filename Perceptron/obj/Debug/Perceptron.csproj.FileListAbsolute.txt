@@ -1,0 +1,9 @@
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Perceptron\bin\Debug\Perceptron.exe
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Perceptron\bin\Debug\Perceptron.pdb
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Perceptron\bin\Debug\General_Tools_Copy.dll
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Perceptron\bin\Debug\General_Tools_Copy.pdb
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Perceptron\obj\Debug\Perceptron.csprojAssemblyReference.cache
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Perceptron\obj\Debug\Perceptron.csproj.CoreCompileInputs.cache
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Perceptron\obj\Debug\Perceptron.csproj.CopyComplete
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Perceptron\obj\Debug\Perceptron.exe
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Perceptron\obj\Debug\Perceptron.pdb

@@ -68,5 +68,25 @@ namespace General_Tools
                 data[i].setWeight(data[i].getWeight() / sumWeight); //every weight now equal to self/totalWeight (converted to percentage summing to 1)
             }
         }
+
+        /// <summary>
+        /// Takes a list of cases and shuffles it randomly, based on the input random seed.
+        /// The methods Shuffle and Swap are copied from user "Shital Sha"'s implentation of the Fisher-Yates shuffle on stack overflow.
+        /// The direct link is: https://stackoverflow.com/questions/273313/randomize-a-listt
+        /// </summary>
+        public static void Shuffle(List<Case> data, int RandomSeed)
+        {
+            Random rand = new Random(RandomSeed);
+
+            for (var i = data.Count; i > 0; i--)
+                Swap(data, 0, rand.Next(0, i));
+        }
+
+        private static void Swap(List<Case> data, int i, int j)
+        {
+            var temp = data[i];
+            data[i] = data[j];
+            data[j] = temp;
+        }
     }
 }

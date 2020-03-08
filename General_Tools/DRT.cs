@@ -67,15 +67,23 @@ namespace General_Tools
 
                 for (int j = 0; j < current.Length; j++)
                 {
-                    double varID = Attributes[j].GetVarID(current[j]);
-                    if (varID == -1) //unrecognized attribute value. Assumed to be unknown and will be replaced by a fractional count
+                    if (Attributes[j].AttType != DAttribute.Type.Numeric)
                     {
-                        unidentifiedID.Add(i); //toss a reference to it onto this stack. Will add multiple copies of the same number for multiple missing values
+                        double varID = Attributes[j].GetVarID(current[j]);
+                        if (varID == -1) //unrecognized attribute value. Assumed to be unknown and will be replaced by a fractional count
+                        {
+                            unidentifiedID.Add(i); //toss a reference to it onto this stack. Will add multiple copies of the same number for multiple missing values
+                        }
+                        caseVars[j] = varID; //record the variant number by the attribute
+
                     }
-                    caseVars[j] = varID; //record the variant number by the attribute
 
-
+                    else //pure numeric attribute
+                    {
+                        caseVars[j] = double.Parse(current[j]);
+                    }
                 }
+
 
                 data.Add(new Case(i, caseVars)); //add the case to the list
             }//repeat until we run out of data.
