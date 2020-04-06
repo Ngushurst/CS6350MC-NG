@@ -88,5 +88,19 @@ namespace General_Tools
             data[i] = data[j];
             data[j] = temp;
         }
+
+        /// <summary>
+        /// Converts all x in a collumn to Y in the given list of cases
+        /// </summary>
+        public static void ColXtoY(List<Case> data, int colNum, double x, double y)
+        {
+            foreach(Case c in data)
+            {
+                if(c.AttributeVals[colNum] == x)
+                {
+                    c.AttributeVals[colNum] = y;
+                }
+            }
+        }
     }
 }

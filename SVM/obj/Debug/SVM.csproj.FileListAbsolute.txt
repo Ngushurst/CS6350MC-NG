@@ -1,0 +1,9 @@
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\SVM\bin\Debug\SVM.exe
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\SVM\bin\Debug\SVM.pdb
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\SVM\bin\Debug\General_Tools_Copy.dll
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\SVM\bin\Debug\General_Tools_Copy.pdb
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\SVM\obj\Debug\SVM.csprojAssemblyReference.cache
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\SVM\obj\Debug\SVM.csproj.CoreCompileInputs.cache
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\SVM\obj\Debug\SVM.csproj.CopyComplete
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\SVM\obj\Debug\SVM.exe
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\SVM\obj\Debug\SVM.pdb
