@@ -1,0 +1,9 @@
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Neural Networks\bin\Debug\Neural Networks.exe
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Neural Networks\bin\Debug\Neural Networks.pdb
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Neural Networks\bin\Debug\General_Tools_Copy.dll
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Neural Networks\bin\Debug\General_Tools_Copy.pdb
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Neural Networks\obj\Debug\Neural Networks.csprojAssemblyReference.cache
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Neural Networks\obj\Debug\Neural Networks.csproj.CoreCompileInputs.cache
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Neural Networks\obj\Debug\Neural Networks.csproj.CopyComplete
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Neural Networks\obj\Debug\Neural Networks.exe
+C:\Users\ngush\source\repos\CS6350Machine_Learning_Library\Neural Networks\obj\Debug\Neural Networks.pdb
